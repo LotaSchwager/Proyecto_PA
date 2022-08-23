@@ -1,2 +1,2 @@
 # Proyecto_PA
-Proyecto 1 de programacion avanzada
+Proyecto 1 de programacion avanzada.
