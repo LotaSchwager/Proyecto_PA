@@ -3,23 +3,31 @@ package northandromeda.proyecto;
 import java.util.*;
 
 public class Alumnos {
+    //Variables de instancia
     private String nombre;
-    private int rut;
-    private double promedio;
+    private String rut;
     private ArrayList<Materias> asignaturas;
     
-    public Alumnos (String nombre, int rut, double promedio){
+    //Constructor que recibe los String necesarios para crear al alumno
+    public Alumnos (String nombre, String rut){
         this.nombre = nombre;
         this.rut = rut;
-        this.promedio = promedio;
         asignaturas = new ArrayList();
     }
     
-    public int getRut() {
+    //Constructor que crea un alumno con valores nulos
+    public Alumnos (){
+        this.nombre = null;
+        this.rut = null;
+        asignaturas = new ArrayList();
+    }
+    
+    //Getter y setter de la clase
+    public String getRut() {
         return rut;
     }
     
-    public void setRut(int rut) {
+    public void setRut(String rut) {
         this.rut = rut;
     }
     
@@ -31,23 +39,8 @@ public class Alumnos {
         this.nombre = nombre;
     }
     
-    public double getProm() {
-        return promedio;
-    }
-    
-    public void setProm(double promedio) {
-        this.promedio = promedio;
-    }
-    
+    //Añadir asignatura a un alumno
     public void agregarAsignatura(Materias oo) {
         asignaturas.add(oo);
-    }
-    
-    public void getAsigList() {
-        
-        for (int i = 0;i < 2;i++){
-            Materias bb = asignaturas.get(i);
-            System.out.println(bb.getAsignatura());
-        }
     }
 }

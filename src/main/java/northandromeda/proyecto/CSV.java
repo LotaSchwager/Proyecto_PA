@@ -5,7 +5,17 @@ import java.util.ArrayList;
 import java.io.*;
 
 public class CSV {
-
+    
+    /*Lee el csv de manera vertical osea:
+    
+        nombre;rut
+        nombre1;rut1
+        nombre2;rut2
+    
+    parametroCSV ("nombre", nombre del csv) de como resultado una lista con los nombres.
+    
+    lista->[nombre1,nombre2]
+    */
     public static ArrayList<String> parametroCSV(String parametro, String nombreArchivo) throws FileNotFoundException, IOException{
         ArrayList<String> parametrosList = new ArrayList<>();
         BufferedReader lector =  new BufferedReader (new FileReader (nombreArchivo));
