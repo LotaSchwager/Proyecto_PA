@@ -41,6 +41,27 @@ public class CSV {
         return parametrosList;
     }
     
+     public static ArrayList<String>  parametroCsvCurso(String parametroALeer,String nombreArchivo) throws FileNotFoundException, IOException{
+            ArrayList<String> listaParametros = new ArrayList<>();
+            BufferedReader br = null;
+            // se crea un BufferedReader(br) que leera el FileReader(fr) del archivo ubicado en la rutaArchivo
+            br = new BufferedReader(new FileReader (nombreArchivo));
+            
+            String linea = null;
+            
+            //se busca la columna que contiene los parametros a guardar en el ArrayList
+            int columna = buscarColumna_CSV(br.readLine(),parametroALeer); 
+            
+                //se leerá hasta la ultima linea del archivo
+            while((linea = br.readLine()) != null){
+                String[] partes = linea.split(";");
+                
+                listaParametros.add(partes[columna]);
+                
+            }
+        return listaParametros;
+    }
+    
     public static int buscarColumna_CSV(String linea,String columnaDeaseada) {
         int columna = 0;
 

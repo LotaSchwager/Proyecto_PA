@@ -1,6 +1,6 @@
 package northandromeda.proyecto;
 
-public class Materias {
+public class Materia {
     //Variables de instancia
     private String asignatura;
     private double evaluacion1;
@@ -8,11 +8,19 @@ public class Materias {
     private double evaluacion3;
     
     //Constructor que recibe los String y doubles necesarios para crear la materia
-    public Materias(String asignatura, double eva01, double eva02, double eva03){
+    public Materia(String asignatura, double eva01, double eva02, double eva03){
         this.asignatura = asignatura;
         this.evaluacion1 = eva01;
         this.evaluacion2 = eva02;
         this.evaluacion3 = eva03;
+    }
+    
+    //Constructor que solo recibe un String
+    public Materia(String asignatura){
+        this.asignatura = asignatura;
+        this.evaluacion1 = 0.0;
+        this.evaluacion2 = 0.0;
+        this.evaluacion3 = 0.0;
     }
     
     //Getter y setter de la clase

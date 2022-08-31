@@ -2,14 +2,15 @@ package northandromeda.proyecto;
 
 import java.io.*;
 import java.util.*;
-import static northandromeda.proyecto.CreatorconClase.*;
+import static northandromeda.proyecto.Pobladordemapas.*;
 
 public class Proyecto {
     
     public static void main(String[] args) throws IOException {
         int option;
+        String decicion;
         BufferedReader lector = new BufferedReader (new InputStreamReader (System.in));
-        Map estudiantes = CreatorAlumno();
+        HashMap <String,Curso> estudiantes = pobladorMapaCursos ();//Mapa con los cursos
         
         do{
             Menus.menuPrincipal();
@@ -18,16 +19,18 @@ public class Proyecto {
             switch (option){
                 
                 case 1:
-                    
-                    for (int i=0;i < estudiantes.size();i++){
-                        Alumnos aa = (Alumnos) estudiantes.get(i);
-                        Menus.listaAlumnos(aa.getNombre(), aa.getRut(), i);
-                    }
-                                      
+                    //Se muestran la lista de los cursos   
+                    Menus.menuOpcion1(estudiantes);
+                    decicion = lector.readLine();
+                    Menus.mostrarCursos(estudiantes, decicion);
+               
                     break;
                     
                 case 2:
-                    System.out.println ("Opcion 2");
+                    //Se pide al usuario que escriba el rut del alumno que desea buscar
+                    System.out.println("Escriba el rut del alumno (El rut debe venir con punto y el guion):");
+                    decicion = lector.readLine();
+                    Menus.menuOpcion2(estudiantes, decicion);
                     break;
                     
                 case 3:
@@ -48,6 +51,7 @@ public class Proyecto {
                     System.out.println ("\nElijio una opcion no disponible\n");
                     break;
             }
+            
             
         } while (option != 4);
     }
