@@ -30,7 +30,7 @@ public class Proyecto {
                     //Se pide al usuario que escriba el rut del alumno que desea buscar
                     System.out.println("Escriba el rut del alumno (El rut debe venir con punto y el guion):");
                     decicion = lector.readLine();
-                    Menus.menuOpcion2(estudiantes, decicion);
+                    Menus.buscarAlumno(estudiantes, decicion);
                     break;
                     
                 case 3:

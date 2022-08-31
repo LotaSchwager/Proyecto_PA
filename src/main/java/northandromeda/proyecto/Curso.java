@@ -1,6 +1,7 @@
 package northandromeda.proyecto;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Curso {
     //Variables de instancia
@@ -28,29 +29,25 @@ public class Curso {
     }
     
     //mostrar alumnos del curso
-    public void mostrarAlumnos(){
-        System.out.println("Curso : " + curso);
+    public ArrayList<Alumno> mostrarAlumnos(){
+        ArrayList<Alumno> alumni = new ArrayList<>();
         for(Alumno value : listaAlumnos.values()){
-            System.out.println("Alumno : " + value.getNombre());
-            System.out.println("rut : " + value.getRut());
-            System.out.println("");
+            alumni.add(value);
         }
-        System.out.println("--------------------------------");
+        
+        return alumni;
     }
     
     //Buscar alumno dentro del curso
-    public boolean buscarAlumno(String rut){
+    public Alumno buscarAlumno(String rut){
         for(Alumno value : listaAlumnos.values()){
             
             if (value.getRut().equals(rut) == true){
-                System.out.println("\nSe ha encontrado al alumno :");
-                System.out.println("Nombre : "+value.getNombre());
-                System.out.println("Curso : "+value.getCursodeAlumno());
-                System.out.println("");
-                return true;
+
+                return value;
             }
         }
         
-        return false;
+        return null;
     }
 }
