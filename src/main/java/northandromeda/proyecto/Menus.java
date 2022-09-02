@@ -33,7 +33,7 @@ public class Menus {
     static void mostrarCursos(HashMap<String,Curso> mapa, String decicion){
         
         if (mapa.containsKey(decicion) == true){
-            ArrayList<Alumno> alumni  = mapa.get(decicion).mostrarAlumnos();
+            ArrayList<Alumno> alumni  = mapa.get(decicion).buscar();
             System.out.println("Curso : "+decicion);
             for(Alumno aa : alumni){
                 System.out.println("Alumno : "+aa.getNombre());
@@ -46,7 +46,7 @@ public class Menus {
             
             if (decicion.equals("Todos")){
                 for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
-                    ArrayList<Alumno> alumni = valor.getValue().mostrarAlumnos();
+                    ArrayList<Alumno> alumni = valor.getValue().buscar();
                     System.out.println("Curso : "+ valor.getKey());
                     for(Alumno aa : alumni){
                          System.out.println("Alumno : "+aa.getNombre());
@@ -62,30 +62,59 @@ public class Menus {
         }
     }
     
-    //Opcion 2 buscar Alumno
-    static void buscarAlumno(HashMap<String,Curso> mapa, String decicion){
+    //Opocion 2 menu
+    static void menuOpcion2(){
+         System.out.println ("--Menu Buscar Alumno--");
+         System.out.println ("1.Alumno con notas de una asignatura especifica");
+         System.out.println ("2.Alumno con todas las notas");
+    }
+    
+    //Opcion 2 buscar Alumno con notas de una materia en especifico
+    static void buscarAlumno(HashMap<String,Curso> mapa, String decicion, String materia){
         int validar = 0;
         for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
-            Alumno aa = valor.getValue().buscarAlumno(decicion);
+            Alumno aa = valor.getValue().buscar(decicion);
             
             if (null != aa){
                 System.out.println("\nSe ha encontrado al alumno :");
                 System.out.println("Nombre : "+aa.getNombre());
                 System.out.println("Curso : "+aa.getCursodeAlumno());
+                aa.mostrarNotas(materia);
                 System.out.println("");
                 validar ++;
             }
         }
         
         if (validar == 0){
-            System.out.println("No se ha encontrado al alumno");
+            System.out.println("\nNo se ha encontrado al alumno");
+        }
+    }
+    
+    //Opcion 2 buscar Alumno con notas de una materia en especifico
+    static void buscarAlumno(HashMap<String,Curso> mapa, String decicion){
+        int validar = 0;
+        for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
+            Alumno aa = valor.getValue().buscar(decicion);
+            
+            if (null != aa){
+                System.out.println("\nSe ha encontrado al alumno :");
+                System.out.println("Nombre : "+aa.getNombre());
+                System.out.println("Curso : "+aa.getCursodeAlumno());
+                aa.mostrarNotas();
+                System.out.println("");
+                validar ++;
+            }
+        }
+        
+        if (validar == 0){
+            System.out.println("\nNo se ha encontrado al alumno");
         }
     }
     
     //buscar alumno sin mostrar nada
-    static boolean buscarAlumno(String decicion,HashMap<String,Curso> mapa){
+    static boolean buscarAlumno2(String decicion,HashMap<String,Curso> mapa){
         for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
-            Alumno aa = valor.getValue().buscarAlumno(decicion);
+            Alumno aa = valor.getValue().buscar(decicion);
             
             if (null != aa){
                 return true;

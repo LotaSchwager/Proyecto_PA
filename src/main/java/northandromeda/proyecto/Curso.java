@@ -28,18 +28,18 @@ public class Curso {
         this.curso = curso;
     }
     
-    //mostrar alumnos del curso
-    public ArrayList<Alumno> mostrarAlumnos(){
+    //busca alumnos del curso
+    public ArrayList<Alumno> buscar(){
         ArrayList<Alumno> alumni = new ArrayList<>();
         for(Alumno value : listaAlumnos.values()){
             alumni.add(value);
         }
         
         return alumni;
-    }
+    } 
     
-    //Buscar alumno dentro del curso
-    public Alumno buscarAlumno(String rut){
+    //Buscar alumno dentro del curso con rut
+    public Alumno buscar(String rut){
         for(Alumno value : listaAlumnos.values()){
             
             if (value.getRut().equals(rut) == true){
@@ -50,4 +50,5 @@ public class Curso {
         
         return null;
     }
+    
 }

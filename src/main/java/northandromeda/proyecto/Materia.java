@@ -1,4 +1,4 @@
-package northandromeda.proyecto;
+    package northandromeda.proyecto;
 
 public class Materia {
     //Variables de instancia

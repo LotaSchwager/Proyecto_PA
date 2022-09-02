@@ -2,6 +2,7 @@ package northandromeda.proyecto;
 
 import java.io.*;
 import java.util.*;
+import static northandromeda.proyecto.Menus.buscarAlumno2;
 import static northandromeda.proyecto.Pobladordemapas.*;
 
 public class Proyecto {
@@ -30,7 +31,34 @@ public class Proyecto {
                     //Se pide al usuario que escriba el rut del alumno que desea buscar
                     System.out.println("Escriba el rut del alumno (El rut debe venir con punto y el guion):");
                     decicion = lector.readLine();
-                    Menus.buscarAlumno(estudiantes, decicion);
+                    
+                    if (buscarAlumno2(decicion, estudiantes)){
+                        int opcion2;
+                        Menus.menuOpcion2();
+                        opcion2 = Integer.parseInt (lector.readLine());
+                        
+                        switch (opcion2) {
+                             case 1:
+                                 System.out.println("Escriba la materia en especifico que quiera ver");
+                                 String asignatura = lector.readLine();
+                                 Menus.buscarAlumno(estudiantes, decicion, asignatura);
+                                 break;
+                            case 2:
+                                Menus.buscarAlumno(estudiantes, decicion);
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }
+                        
+                    }else{
+                          System.out.println("No se ha encontrado el alumno");
+                    }
+                    
+
+                     
+                              
+                                
                     break;
                     
                 case 3:
@@ -43,7 +71,7 @@ public class Proyecto {
                     System.out.println("Especifique el curso perteneciente del nuevo alumno");
                     curso = lector.readLine();
                     estudiantes = agregarAlumnoalMapa(nombre,rut,curso,estudiantes);
-                    System.out.println("Listo se ha agregado exitosamente el nuevo alumno");
+                    System.out.println("Revise en la opcion lista para comprobar si se agrego el alumno.");
                     break;
                     
                 case 4:

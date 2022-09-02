@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import static northandromeda.proyecto.CSV.*;
 import static northandromeda.proyecto.Menus.buscarAlumno;
+import static northandromeda.proyecto.Menus.buscarAlumno2;
 
 public class Pobladordemapas {
     //Se crea una lista de tipo alumno con los datos recibidos del csv
@@ -58,7 +59,7 @@ public class Pobladordemapas {
     //nuevo alumno
     public static HashMap<String,Curso> agregarAlumnoalMapa(String nombre, String rut, String curso, HashMap<String,Curso> mapa){
             
-           if (buscarAlumno(rut,mapa)){
+           if (buscarAlumno2(rut,mapa)){
                 return mapa;
                
            }else{
