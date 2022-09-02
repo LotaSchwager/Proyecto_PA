@@ -70,8 +70,8 @@ public class Menus {
             
             if (null != aa){
                 System.out.println("\nSe ha encontrado al alumno :");
-                System.out.println("Nombre :"+aa.getNombre());
-                System.out.println("Curso :"+aa.getCursodeAlumno());
+                System.out.println("Nombre : "+aa.getNombre());
+                System.out.println("Curso : "+aa.getCursodeAlumno());
                 System.out.println("");
                 validar ++;
             }

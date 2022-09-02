@@ -8,7 +8,7 @@ public class Proyecto {
     
     public static void main(String[] args) throws IOException {
         int option;
-        String decicion;
+        String decicion,nombre,rut,curso;
         BufferedReader lector = new BufferedReader (new InputStreamReader (System.in));
         HashMap <String,Curso> estudiantes = pobladorMapaCursos ();//Mapa con los cursos
         
@@ -34,7 +34,16 @@ public class Proyecto {
                     break;
                     
                 case 3:
-                    System.out.println ("Opcion 3");
+                    //Se pedira al usuario que escriba el nombre,rut y curso a la cual pertenece el nuevo alumno
+                    System.out.println("Tenga en cuenta que si coloca un alumno con el mismo rut no se añadira el alumno");
+                    System.out.println("Escriba el nombre del nuevo alumno");
+                    nombre = lector.readLine();
+                    System.out.println("Escriba el rut del nuevo alumno");
+                    rut = lector.readLine();
+                    System.out.println("Especifique el curso perteneciente del nuevo alumno");
+                    curso = lector.readLine();
+                    estudiantes = agregarAlumnoalMapa(nombre,rut,curso,estudiantes);
+                    System.out.println("Listo se ha agregado exitosamente el nuevo alumno");
                     break;
                     
                 case 4:

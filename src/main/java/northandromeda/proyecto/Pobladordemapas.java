@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import static northandromeda.proyecto.CSV.*;
+import static northandromeda.proyecto.Menus.buscarAlumno;
 
 public class Pobladordemapas {
     //Se crea una lista de tipo alumno con los datos recibidos del csv
@@ -52,5 +53,40 @@ public class Pobladordemapas {
         }
         
         return curse;
+    }
+
+    //nuevo alumno
+    public static HashMap<String,Curso> agregarAlumnoalMapa(String nombre, String rut, String curso, HashMap<String,Curso> mapa){
+            
+           if (buscarAlumno(rut,mapa)){
+                return mapa;
+               
+           }else{
+               Alumno alumni = new Alumno(nombre,rut,curso);
+               Materia mat = new Materia ("Matematica");
+               Materia len = new Materia ("Lenguaje");
+               Materia bio = new Materia ("Biologia");
+               Materia fis = new Materia ("Fisica");
+               Materia quim = new Materia ("Quimica");
+            
+               alumni.agregarAsignatura(mat);
+               alumni.agregarAsignatura(len);
+               alumni.agregarAsignatura(bio);
+               alumni.agregarAsignatura(fis);
+               alumni.agregarAsignatura(quim);
+               
+               if (mapa.containsKey(curso)){
+                  Curso cursoExistente = mapa.get(curso);
+                  cursoExistente.agregarAlumnos(alumni, rut);
+            
+               }else{
+                  Curso nuevoCurso = new Curso (curso);
+                  nuevoCurso.agregarAlumnos(alumni, rut);
+                  mapa.put(curso, nuevoCurso);
+               }
+            
+               return mapa;
+           }
+     
     }    
 }
