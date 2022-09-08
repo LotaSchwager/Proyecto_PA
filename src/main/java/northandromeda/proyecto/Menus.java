@@ -11,7 +11,8 @@ public class Menus {
         System.out.println ("1.Lista de Cursos");
         System.out.println ("2.Buscar Alumno");
         System.out.println ("3.Añadir alumno");
-        System.out.println ("4.Salir");
+        System.out.println ("4.Lista de Profesores");
+        System.out.println ("5.Salir");
         System.out.println ("\nElija la opcion : ");
     }
     

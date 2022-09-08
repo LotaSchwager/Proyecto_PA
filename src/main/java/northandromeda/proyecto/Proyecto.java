@@ -12,6 +12,7 @@ public class Proyecto {
         String decicion,nombre,rut,curso;
         BufferedReader lector = new BufferedReader (new InputStreamReader (System.in));
         HashMap <String,Curso> estudiantes = pobladorMapaCursos ();//Mapa con los cursos
+        HashMap<String,Profesor> profesores = conjuntoDEprofes();
         
         do{
             Menus.menuPrincipal();
@@ -53,11 +54,7 @@ public class Proyecto {
                         
                     }else{
                           System.out.println("No se ha encontrado el alumno");
-                    }
-                    
-
-                     
-                              
+                    }      
                                 
                     break;
                     
@@ -75,6 +72,16 @@ public class Proyecto {
                     break;
                     
                 case 4:
+                    System.out.println("\n-----------Lista de Profesores-----------");
+                    for(Profesor profe : profesores.values()){
+                            System.out.println("Nombre :"+profe.getNombre());
+                            System.out.println("Rut :"+ profe.getRut());
+                            System.out.println("Asignatura :"+ profe.getMateria());
+                            System.out.println("");
+                    }
+                    break;
+                    
+                case 5:
                     System.out.println ("Desea realmente salir? (Y/N)");
                     char yesNO = Menus.StringToChar(lector.readLine());
                     if (yesNO == 'Y' | yesNO == 'y'){
@@ -90,7 +97,7 @@ public class Proyecto {
             }
             
             
-        } while (option != 4);
+        } while (option != 5);
     }
 
 }

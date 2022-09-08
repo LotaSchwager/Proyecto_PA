@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import static northandromeda.proyecto.CSV.*;
-import static northandromeda.proyecto.Menus.buscarAlumno;
 import static northandromeda.proyecto.Menus.buscarAlumno2;
 
 public class Pobladordemapas {
@@ -89,5 +88,21 @@ public class Pobladordemapas {
                return mapa;
            }
      
+    }
+
+    public static HashMap<String,Profesor> conjuntoDEprofes() throws IOException{
+        HashMap<String,Profesor> conjunto = new HashMap<>();
+        
+        ArrayList<String> nombres = parametroCSV ("profesor", "Profesores.csv");
+        ArrayList<String> rut  = parametroCSV ("rut", "Profesores.csv");
+        ArrayList<String> curso  = parametroCsvCurso ("materia", "Profesores.csv");
+        
+        for(int i=0; i < nombres.size(); i++){
+            Profesor nuevoProfe = new Profesor(nombres.get(i), rut.get(i), curso.get(i));
+            
+            conjunto.put(rut.get(i), nuevoProfe);
+        }
+        
+        return conjunto;
     }    
 }
