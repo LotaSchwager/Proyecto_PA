@@ -1,6 +1,6 @@
 package northandromeda.proyecto;
 
-public class Persona {
+public abstract class Persona {
     //Variables de instancia
     private String nombre;
     private String rut;
