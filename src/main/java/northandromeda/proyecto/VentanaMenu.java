@@ -6,7 +6,7 @@
 package northandromeda.proyecto;
 
 import java.util.HashMap;
-import static northandromeda.proyecto.Menus.buscarAlumno2;
+import static northandromeda.proyecto.Busqueda.buscarAlumno2;
 import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
 
 /**
@@ -62,6 +62,8 @@ public class VentanaMenu extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backgorund.setBackground(new java.awt.Color(255, 255, 255));
+        backgorund.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        backgorund.setDoubleBuffered(false);
         backgorund.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(71, 125, 205));
@@ -262,11 +264,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonConsolaMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+    public static void ron () {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -290,10 +288,8 @@ public class VentanaMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaMenu().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new VentanaMenu().setVisible(true);
         });
     }
 
@@ -314,4 +310,5 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelConsola;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -1,27 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package northandromeda.proyecto;
 
 import java.awt.Color;
-import java.util.HashMap;
-import static northandromeda.proyecto.Pobladordemapas.conjuntoDEprofes;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author yorch
- */
 public class VentanaInicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaInicio
-     */
     public VentanaInicio() {
         initComponents();
-        campoRut.setText("");
-        campoRut.setForeground(Color.black);
+        RutString.setText("");
+        RutString.setForeground(Color.black);
     }
 
     /**
@@ -38,13 +27,13 @@ public class VentanaInicio extends javax.swing.JFrame {
         titulo = new javax.swing.JLabel();
         textInicio = new javax.swing.JLabel();
         textRut = new javax.swing.JLabel();
-        campoRut = new javax.swing.JTextField();
+        RutString = new javax.swing.JTextField();
         textContra = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        campoContra = new javax.swing.JPasswordField();
+        ClaveString = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
         panelBotonInicio = new javax.swing.JPanel();
-        labelBotonIn = new javax.swing.JLabel();
+        LogIn = new javax.swing.JLabel();
         textWarn = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,6 +50,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(50, 50));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -81,53 +72,53 @@ public class VentanaInicio extends javax.swing.JFrame {
         textRut.setText("Rut");
         jPanel1.add(textRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
-        campoRut.setForeground(new java.awt.Color(153, 153, 153));
-        campoRut.setText("Ingrese su rut");
-        campoRut.setBorder(null);
-        campoRut.addMouseListener(new java.awt.event.MouseAdapter() {
+        RutString.setForeground(new java.awt.Color(153, 153, 153));
+        RutString.setText("Ingrese su rut");
+        RutString.setBorder(null);
+        RutString.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                campoRutMouseClicked(evt);
+                RutStringMouseClicked(evt);
             }
         });
-        jPanel1.add(campoRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 280, 20));
+        jPanel1.add(RutString, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 280, 20));
 
         textContra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textContra.setText("Contraseña");
         jPanel1.add(textContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 280, -1));
 
-        campoContra.setForeground(new java.awt.Color(153, 153, 153));
-        campoContra.setText("**********");
-        campoContra.setBorder(null);
-        campoContra.addMouseListener(new java.awt.event.MouseAdapter() {
+        ClaveString.setForeground(new java.awt.Color(153, 153, 153));
+        ClaveString.setText("**********");
+        ClaveString.setBorder(null);
+        ClaveString.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                campoContraMouseClicked(evt);
+                ClaveStringMouseClicked(evt);
             }
         });
-        jPanel1.add(campoContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 280, 20));
+        jPanel1.add(ClaveString, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 280, 20));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 280, 10));
 
         panelBotonInicio.setBackground(new java.awt.Color(71, 125, 205));
 
-        labelBotonIn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelBotonIn.setForeground(new java.awt.Color(244, 244, 244));
-        labelBotonIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelBotonIn.setText("ENTRAR");
-        labelBotonIn.addMouseListener(new java.awt.event.MouseAdapter() {
+        LogIn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        LogIn.setForeground(new java.awt.Color(244, 244, 244));
+        LogIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LogIn.setText("ENTRAR");
+        LogIn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelBotonInMouseClicked(evt);
+                LogInMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelBotonInMouseEntered(evt);
+                LogInMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelBotonInMouseExited(evt);
+                LogInMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelBotonInMousePressed(evt);
+                LogInMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                labelBotonInMouseReleased(evt);
+                LogInMouseReleased(evt);
             }
         });
 
@@ -135,11 +126,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         panelBotonInicio.setLayout(panelBotonInicioLayout);
         panelBotonInicioLayout.setHorizontalGroup(
             panelBotonInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelBotonIn, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(LogIn, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         panelBotonInicioLayout.setVerticalGroup(
             panelBotonInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelBotonIn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(LogIn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         jPanel1.add(panelBotonInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 120, 30));
@@ -168,76 +159,79 @@ public class VentanaInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void labelBotonInMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonInMouseEntered
+    private void LogInMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInMouseEntered
         //dieño para simular un boton 
         //boton reposo = [47,68,110] 
         //cursor sobre el = boton [90,130,190]
         panelBotonInicio.setBackground(new Color(90,130,190));
-    }//GEN-LAST:event_labelBotonInMouseEntered
+    }//GEN-LAST:event_LogInMouseEntered
 
-    private void labelBotonInMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonInMouseExited
+    private void LogInMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInMouseExited
         panelBotonInicio.setBackground(new Color(71,125,205));
-    }//GEN-LAST:event_labelBotonInMouseExited
+    }//GEN-LAST:event_LogInMouseExited
 
-    private void labelBotonInMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonInMousePressed
+    private void LogInMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInMousePressed
         // TODO add your handling code here:
         panelBotonInicio.setBackground(new Color(71,125,205));
-    }//GEN-LAST:event_labelBotonInMousePressed
+    }//GEN-LAST:event_LogInMousePressed
 
-    private void labelBotonInMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonInMouseReleased
+    private void LogInMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInMouseReleased
         // TODO add your handling code here:
         panelBotonInicio.setBackground(new Color(90,130,190));
-    }//GEN-LAST:event_labelBotonInMouseReleased
+    }//GEN-LAST:event_LogInMouseReleased
 
-    private void labelBotonInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonInMouseClicked
+    private void LogInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInMouseClicked
+    
+        Profesor current = null;
+        try {
+            current = Busqueda.buscarProfesor(RutString.getText());
+            
+            if (current != null){
+                if (Busqueda.correctPassword(current, ClaveString.getText())){
+                    VentanaMenu next = new VentanaMenu();
+                    this.setVisible(false);
+                    next.setVisible(true);
+                
+                }else{
+                    textWarn.setForeground(Color.red);
+                    textWarn.setText("Contraseña incorrecta");
+                }
+            
+            }else{
+                textWarn.setForeground(Color.red);
+                textWarn.setText("Usuario no registrado");
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+    }//GEN-LAST:event_LogInMouseClicked
+
+    private void RutStringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RutStringMouseClicked
         // TODO add your handling code here:
-        HashMap<String,Profesor> profesores = conjuntoDEprofes();
-        //ERROR CONOCIDO: al no poder incluir IOExeption lo marca como error
-        //hacer funcion buscarProfesor() para no tener que usar hashmap dentro de la ventana
-        
-        String rut = campoRut.getText();
-        Profesor current = profesores.get(rut);
-        
-        if(current==null){
-            textWarn.setForeground(Color.red);
-            textWarn.setText("Usuario y/o contraseña no registrados");
-        }else{
-            VentanaMenu next = new VentanaMenu();
-            this.setVisible(false);
-            next.setVisible(true);
+        if(RutString.getText().equals("Ingrese su rut")){
+            RutString.setText("");
+            RutString.setForeground(Color.black);
         }
-        
-    }//GEN-LAST:event_labelBotonInMouseClicked
+        if(String.valueOf(ClaveString.getPassword()).isEmpty()){
+            ClaveString.setText("**********");
+            ClaveString.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_RutStringMouseClicked
 
-    private void campoRutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoRutMouseClicked
+    private void ClaveStringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClaveStringMouseClicked
         // TODO add your handling code here:
-        if(campoRut.getText().equals("Ingrese su rut")){
-            campoRut.setText("");
-            campoRut.setForeground(Color.black);
+        if(String.valueOf(ClaveString.getPassword()).equals("**********")){
+            ClaveString.setText("");
+            ClaveString.setForeground(Color.black);
         }
-        if(String.valueOf(campoContra.getPassword()).isEmpty()){
-            campoContra.setText("**********");
-            campoContra.setForeground(new Color(153,153,153));
+        if(RutString.getText().isEmpty()){
+            RutString.setText("Ingrese su rut");
+            RutString.setForeground(new Color(153,153,153));
         }
-    }//GEN-LAST:event_campoRutMouseClicked
+    }//GEN-LAST:event_ClaveStringMouseClicked
 
-    private void campoContraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoContraMouseClicked
-        // TODO add your handling code here:
-        if(String.valueOf(campoContra.getPassword()).equals("**********")){
-            campoContra.setText("");
-            campoContra.setForeground(Color.black);
-        }
-        if(campoRut.getText().isEmpty()){
-            campoRut.setText("Ingrese su rut");
-            campoRut.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_campoContraMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+    public static void run() {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -261,23 +255,21 @@ public class VentanaInicio extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaInicio().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new VentanaInicio().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField campoContra;
-    private javax.swing.JTextField campoRut;
+    private javax.swing.JPasswordField ClaveString;
+    private javax.swing.JLabel LogIn;
+    private javax.swing.JTextField RutString;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel labelBotonIn;
     private javax.swing.JPanel panelBotonInicio;
     private javax.swing.JLabel textContra;
     private javax.swing.JLabel textInicio;
@@ -285,4 +277,9 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel textWarn;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
+
+    private boolean buscarProfesor(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
