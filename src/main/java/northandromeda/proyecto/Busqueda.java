@@ -22,57 +22,15 @@ public class Busqueda {
             return null;
         }
     }
-        
-    //Opcion 2 buscar Alumno con notas de una materia en especifico
-    static void buscarAlumno(HashMap<String,Curso> mapa, String decicion, String materia){
-        int validar = 0;
-        for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
-            Alumno aa = valor.getValue().buscar(decicion);
-            
-            if (null != aa){
-                System.out.println("\nSe ha encontrado al alumno :");
-                System.out.println("Nombre : "+aa.getNombre());
-                System.out.println("Curso : "+aa.getCursodeAlumno());
-                aa.mostrarNotas(materia);
-                System.out.println("");
-                validar ++;
-            }
-        }
-        
-        if (validar == 0){
-            System.out.println("\nNo se ha encontrado al alumno");
-        }
-    }
-    
-    //Opcion 2 buscar Alumno con notas de una materia en especifico
-    static void buscarAlumno(HashMap<String,Curso> mapa, String decicion){
-        int validar = 0;
-        for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
-            Alumno aa = valor.getValue().buscar(decicion);
-            
-            if (null != aa){
-                System.out.println("\nSe ha encontrado al alumno :");
-                System.out.println("Nombre : "+aa.getNombre());
-                System.out.println("Curso : "+aa.getCursodeAlumno());
-                aa.mostrarNotas();
-                System.out.println("");
-                validar ++;
-            }
-        }
-        
-        if (validar == 0){
-            System.out.println("\nNo se ha encontrado al alumno");
-        }
-    }
     
     //buscar alumno sin mostrar nada
     static boolean buscarAlumno2(String decicion,HashMap<String,Curso> mapa){
         for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
-            Alumno aa = valor.getValue().buscar(decicion);
             
-            if (null != aa){
+            if (valor.getValue().buscarAlumno(decicion)){
                 return true;
             }
+            
         }
         return false;
     }

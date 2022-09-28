@@ -8,7 +8,7 @@ import static northandromeda.proyecto.Busqueda.buscarAlumno2;
 
 public class Pobladordemapas {
     //Se crea una lista de tipo alumno con los datos recibidos del csv
-    public static ArrayList<Alumno> creatorAlumnos () throws IOException{
+    public static Lust creatorAlumnos () throws IOException{
         Materia mat = new Materia ("Matematica");
         Materia len = new Materia ("Lenguaje");
         Materia bio = new Materia ("Biologia");
@@ -19,16 +19,16 @@ public class Pobladordemapas {
         ArrayList<String> rut  = parametroCSV ("rut", "Alumnos.csv");
         ArrayList<String> curso  = parametroCsvCurso ("curso", "Alumnos.csv");
         
-        ArrayList<Alumno> all = new ArrayList<>();
+        Lust all = new Lust();
         
         for(int i=0;i<nombres.size();i++){
             Alumno student = new Alumno (nombres.get(i),rut.get(i),curso.get(i));
-            student.agregarAsignatura(mat);
-            student.agregarAsignatura(len);
-            student.agregarAsignatura(bio);
-            student.agregarAsignatura(fis);
-            student.agregarAsignatura(quim);
-            all.add(student);
+            student.agregarAsignaturas(mat);
+            student.agregarAsignaturas(len);
+            student.agregarAsignaturas(bio);
+            student.agregarAsignaturas(fis);
+            student.agregarAsignaturas(quim);
+            all.agregar(student);
         }
 
         return all;
@@ -36,11 +36,11 @@ public class Pobladordemapas {
     
     //Se utiliza la lista de alumnos para insertalos en el mapa de cursos
     public static HashMap<String,Curso> pobladorMapaCursos()throws IOException{      
-        HashMap<String,Curso> curse = new HashMap();
+        HashMap<String,Curso> curse = new HashMap<>();
      
-        ArrayList<Alumno> estudiante = creatorAlumnos();
-        for(int i=0;i<estudiante.size();i++){
-            Alumno aa = estudiante.get(i);
+        Lust estudiante = new Lust();
+        for(int i=0;i<estudiante.lustSize();i++){
+            Alumno aa = (Alumno) estudiante.getLust(i);
            
             if (curse.containsKey(aa.getCursodeAlumno()) != true){
                     Curso nuevoCurso = new Curso(aa.getCursodeAlumno());
@@ -69,11 +69,11 @@ public class Pobladordemapas {
                Materia fis = new Materia ("Fisica");
                Materia quim = new Materia ("Quimica");
             
-               alumni.agregarAsignatura(mat);
-               alumni.agregarAsignatura(len);
-               alumni.agregarAsignatura(bio);
-               alumni.agregarAsignatura(fis);
-               alumni.agregarAsignatura(quim);
+               alumni.agregarAsignaturas(mat);
+               alumni.agregarAsignaturas(len);
+               alumni.agregarAsignaturas(bio);
+               alumni.agregarAsignaturas(fis);
+               alumni.agregarAsignaturas(quim);
                
                if (mapa.containsKey(curso)){
                   Curso cursoExistente = mapa.get(curso);
@@ -105,5 +105,5 @@ public class Pobladordemapas {
         }
         
         return conjunto;
-    }    
+    }   
 }
