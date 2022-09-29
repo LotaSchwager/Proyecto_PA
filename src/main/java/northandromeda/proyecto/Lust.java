@@ -1,4 +1,4 @@
-package northandromeda.proyecto;
+package northandromeda.prueba;
 
 import java.util.ArrayList;
 
@@ -9,13 +9,9 @@ public class Lust {
         this.lista = new ArrayList();
     }
     
-    public boolean agregar (Object obj){
+    public void agregar (Object obj){
         
-        if (lista.contains(obj)){
-            this.lista.add(obj);
-            return true;
-        }
-        return false;
+        this.lista.add(obj);
     }
     
     public Object getLust(int index){

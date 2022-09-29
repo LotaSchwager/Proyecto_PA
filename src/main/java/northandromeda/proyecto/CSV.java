@@ -1,8 +1,10 @@
 
-package northandromeda.proyecto;
+package northandromeda.prueba;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CSV {
     
@@ -75,4 +77,101 @@ public class CSV {
         return columna;
     }
     
+    public static  void agregarAlumno(String[] alumno, String archivo){
+        BufferedWriter bufferEscritura= null;
+        try{
+            bufferEscritura = new BufferedWriter(new FileWriter(archivo, true));
+            
+            bufferEscritura.newLine();
+            for (int i = 0; i < alumno.length; i++){
+                if (i != alumno.length - 1){
+                    bufferEscritura.write(alumno[i] + ";");
+                }else{
+                    bufferEscritura.write(alumno[i]);
+                }
+            }
+                
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{{
+            if (bufferEscritura != null){
+                try{
+                    bufferEscritura.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        }        
+    }
+    
+    public static  ArrayList<String> notasAlumno(String rut, String archivo){
+        String separador = ";";
+        String line = null;
+        ArrayList<String> notas = new ArrayList<>();
+        BufferedReader bufferLectura = null;
+        try{
+            bufferLectura = new BufferedReader(new FileReader(archivo));
+            
+            while ((line = bufferLectura.readLine()) != null){
+                String[] datos = line.split(separador);
+                
+                if (datos[0].equals(rut)){
+                    for(int i=1; i < datos.length; i++){
+                        notas.add(datos[i]);
+                    }
+                }
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (IOException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }finally{{
+            if (bufferLectura != null){
+                try{
+                    bufferLectura.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
+                }
+            }
+        }
+        }        
+        return notas;
+    }
+    
+    public static  void nuevoAlumno(String[] alumno){
+        BufferedWriter bufferEscritura= null;
+        try{
+            bufferEscritura = new BufferedWriter(new FileWriter("Alumnos.csv", true));
+            
+            bufferEscritura.newLine();
+            for (int i = 0; i < alumno.length; i++){
+                if (i != alumno.length - 1){
+                    bufferEscritura.write(alumno[i] + ";");
+                }else{
+                    bufferEscritura.write(alumno[i]);
+                }
+            }
+                
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{{
+            if (bufferEscritura != null){
+                try{
+                    bufferEscritura.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        }        
+    }
 }

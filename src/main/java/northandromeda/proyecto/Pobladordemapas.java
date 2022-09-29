@@ -1,19 +1,14 @@
-package northandromeda.proyecto;
+package northandromeda.prueba;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import static northandromeda.proyecto.CSV.*;
-import static northandromeda.proyecto.Busqueda.buscarAlumno2;
+import static northandromeda.prueba.CSV.*;
+import static northandromeda.prueba.Busqueda.buscarAlumno2;
 
 public class Pobladordemapas {
     //Se crea una lista de tipo alumno con los datos recibidos del csv
-    public static Lust creatorAlumnos () throws IOException{
-        Materia mat = new Materia ("Matematica");
-        Materia len = new Materia ("Lenguaje");
-        Materia bio = new Materia ("Biologia");
-        Materia fis = new Materia ("Fisica");
-        Materia quim = new Materia ("Quimica");
+    public static Lust creatorAlumnos (String materia) throws IOException{
         
         ArrayList<String> nombres = parametroCSV ("nombre", "Alumnos.csv");
         ArrayList<String> rut  = parametroCSV ("rut", "Alumnos.csv");
@@ -23,11 +18,14 @@ public class Pobladordemapas {
         
         for(int i=0;i<nombres.size();i++){
             Alumno student = new Alumno (nombres.get(i),rut.get(i),curso.get(i));
-            student.agregarAsignaturas(mat);
-            student.agregarAsignaturas(len);
-            student.agregarAsignaturas(bio);
-            student.agregarAsignaturas(fis);
-            student.agregarAsignaturas(quim);
+            ArrayList<String> asignaturas  = notasAlumno (rut.get(i), materia + ".csv");
+            student.agregarNotas(asignaturas.get(0));
+            student.agregarNotas(asignaturas.get(1));
+            student.agregarNotas(asignaturas.get(2));
+            student.agregarNotas(asignaturas.get(3));
+            student.agregarNotas(asignaturas.get(4));
+            student.setPromedio();
+            
             all.agregar(student);
         }
 
@@ -35,10 +33,10 @@ public class Pobladordemapas {
     }
     
     //Se utiliza la lista de alumnos para insertalos en el mapa de cursos
-    public static HashMap<String,Curso> pobladorMapaCursos()throws IOException{      
+    public static HashMap<String,Curso> pobladorMapaCursos(String materia)throws IOException{      
         HashMap<String,Curso> curse = new HashMap<>();
      
-        Lust estudiante = new Lust();
+        Lust estudiante = creatorAlumnos(materia);
         for(int i=0;i<estudiante.lustSize();i++){
             Alumno aa = (Alumno) estudiante.getLust(i);
            
@@ -62,18 +60,7 @@ public class Pobladordemapas {
                 return mapa;
                
            }else{
-               Alumno alumni = new Alumno(nombre,rut,curso);
-               Materia mat = new Materia ("Matematica");
-               Materia len = new Materia ("Lenguaje");
-               Materia bio = new Materia ("Biologia");
-               Materia fis = new Materia ("Fisica");
-               Materia quim = new Materia ("Quimica");
-            
-               alumni.agregarAsignaturas(mat);
-               alumni.agregarAsignaturas(len);
-               alumni.agregarAsignaturas(bio);
-               alumni.agregarAsignaturas(fis);
-               alumni.agregarAsignaturas(quim);
+               Alumno alumni = new Alumno(nombre,rut,curso);           
                
                if (mapa.containsKey(curso)){
                   Curso cursoExistente = mapa.get(curso);
