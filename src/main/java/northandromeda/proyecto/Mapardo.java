@@ -36,7 +36,19 @@ public class Mapardo {
     
     public boolean claveUsada (String clave){
         
-        return mapa.containsKey(clave);
+        return this.mapa.containsKey(clave);
+    }
+    
+    public Lust obtieneLista (){
+        Lust lista = new Lust();
+        
+        int i = 0;
+        for (Object value : mapa.values()){
+            lista.agregar(i, value);
+            i++;
+        }
+        
+        return lista;
     }
     
 }

@@ -1,5 +1,5 @@
 
-package northandromeda.prueba;
+package northandromeda.proyecto;
 
 import java.util.ArrayList;
 import java.io.*;

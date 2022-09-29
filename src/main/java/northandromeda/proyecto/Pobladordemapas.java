@@ -1,10 +1,10 @@
-package northandromeda.prueba;
+package northandromeda.proyecto;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import static northandromeda.prueba.CSV.*;
-import static northandromeda.prueba.Busqueda.buscarAlumno2;
+import static northandromeda.proyecto.CSV.*;
+import static northandromeda.proyecto.Busqueda.buscarAlumno2;
 
 public class Pobladordemapas {
     //Se crea una lista de tipo alumno con los datos recibidos del csv

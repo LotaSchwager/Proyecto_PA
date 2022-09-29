@@ -1,4 +1,4 @@
-package northandromeda.prueba;
+package northandromeda.proyecto;
 
 public class Alumno extends Persona {
     private String curso;
