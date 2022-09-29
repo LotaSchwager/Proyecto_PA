@@ -6,13 +6,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VentanaInicio extends javax.swing.JFrame {
-
+    
     public VentanaInicio() {
         initComponents();
+        this.setLocationRelativeTo(null);//ventana aparesca al centro
         RutString.setText("");
         RutString.setForeground(Color.black);
     }
-
+    
+    public static Profesor profe;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,6 +191,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             if (current != null){
                 if (Busqueda.correctPassword(current, ClaveString.getText())){
                     VentanaMenu next = new VentanaMenu();
+                    profe = current;
                     this.setVisible(false);
                     next.setVisible(true);
                 

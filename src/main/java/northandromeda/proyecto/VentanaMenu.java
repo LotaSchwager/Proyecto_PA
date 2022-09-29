@@ -5,8 +5,9 @@
  */
 package northandromeda.proyecto;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.HashMap;
-import static northandromeda.proyecto.Busqueda.buscarAlumno2;
 import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
 
 /**
@@ -18,21 +19,27 @@ public class VentanaMenu extends javax.swing.JFrame {
     /**
      * Creates new form VentanaMenu
      */
+    
+    
     public VentanaMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);//ventana aparesca al centro
+        
+        PanelPrincipal current = new PanelPrincipal();
+        current.setSize(contenido.getSize());
+        current.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(current,BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
     }
     
     
-    private boolean lc=false,lp=false,ba=false,aa=false;
-    /*
+    private Color azulClaro = new Color(71,125,205);
+    private Color azul = new Color(47,99,176);
     
-    booleanos para saber que opcion es la que se esta considerando
-    lc:lista cursos
-    lp:lista profe
-    ba:buscar alumno
-    aa:añadir alumno
-    
-    */
+    //paleta de colores
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,228 +50,432 @@ public class VentanaMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         backgorund = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        botonSalir = new javax.swing.JButton();
-        botonAnadirAl = new javax.swing.JButton();
-        botonBuscarAl = new javax.swing.JButton();
-        botonListadecursos = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        consola = new javax.swing.JTextPane();
-        botonConsola = new javax.swing.JButton();
-        campoConsola = new javax.swing.JTextField();
-        labelConsola = new javax.swing.JLabel();
+        panelIzquierdo = new javax.swing.JPanel();
+        labelMenu = new javax.swing.JLabel();
+        botonPrincipal = new javax.swing.JPanel();
+        jSeparator4 = new javax.swing.JSeparator();
+        labelPrincipal = new javax.swing.JLabel();
+        botonCurso = new javax.swing.JPanel();
+        labelBotonCurso = new javax.swing.JLabel();
+        botonBuscarAl = new javax.swing.JPanel();
+        labelBuscarAl = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        botonAñadirAl = new javax.swing.JPanel();
+        labelBotonAñadirAl = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        botonListaprofes = new javax.swing.JPanel();
+        labelMateria = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        botonSalir = new javax.swing.JPanel();
+        labelsalir = new javax.swing.JLabel();
+        contenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backgorund.setBackground(new java.awt.Color(255, 255, 255));
-        backgorund.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        backgorund.setDoubleBuffered(false);
         backgorund.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(71, 125, 205));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelIzquierdo.setBackground(new java.awt.Color(47, 99, 176));
+        panelIzquierdo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonSalir.setText("SALIR");
-        botonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSalirActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 210, 53));
+        labelMenu.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        labelMenu.setForeground(new java.awt.Color(255, 255, 255));
+        labelMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMenu.setText("MENU");
+        panelIzquierdo.add(labelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 290, 80));
 
-        botonAnadirAl.setText("añadir alumno");
-        botonAnadirAl.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonPrincipal.setBackground(new java.awt.Color(47, 99, 176));
+        botonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        botonPrincipal.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 68, 290, -1));
+
+        labelPrincipal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelPrincipal.setForeground(new java.awt.Color(255, 255, 255));
+        labelPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPrincipal.setText("Principal");
+        labelPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonAnadirAlMouseClicked(evt);
+                labelPrincipalMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelPrincipalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelPrincipalMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelPrincipalMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                labelPrincipalMouseReleased(evt);
             }
         });
-        botonAnadirAl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAnadirAlActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonAnadirAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, 53));
+        botonPrincipal.add(labelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 70));
 
-        botonBuscarAl.setText("buscar alumno");
-        botonBuscarAl.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelIzquierdo.add(botonPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 290, 70));
+
+        botonCurso.setBackground(new java.awt.Color(47, 99, 176));
+        botonCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCurso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelBotonCurso.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelBotonCurso.setForeground(new java.awt.Color(255, 255, 255));
+        labelBotonCurso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelBotonCurso.setText("Lista de cursos");
+        labelBotonCurso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonBuscarAlMouseClicked(evt);
+                labelBotonCursoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelBotonCursoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelBotonCursoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelBotonCursoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                labelBotonCursoMouseReleased(evt);
             }
         });
-        botonBuscarAl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarAlActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonBuscarAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 210, 53));
+        botonCurso.add(labelBotonCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 70));
 
-        botonListadecursos.setText("lista de cursos");
-        botonListadecursos.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelIzquierdo.add(botonCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 290, 70));
+
+        botonBuscarAl.setBackground(new java.awt.Color(47, 99, 176));
+        botonBuscarAl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonBuscarAl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelBuscarAl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelBuscarAl.setForeground(new java.awt.Color(255, 255, 255));
+        labelBuscarAl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelBuscarAl.setText("Buscar Alumno");
+        labelBuscarAl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonListadecursosMouseClicked(evt);
+                labelBuscarAlMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelBuscarAlMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelBuscarAlMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelBuscarAlMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                labelBuscarAlMouseReleased(evt);
             }
         });
-        botonListadecursos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonListadecursosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonListadecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 210, 53));
+        botonBuscarAl.add(labelBuscarAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 70));
+        botonBuscarAl.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, -1));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MENU");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 290, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 270, 30));
+        panelIzquierdo.add(botonBuscarAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 290, 70));
 
-        jButton2.setText("lista de profes");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonAñadirAl.setBackground(new java.awt.Color(47, 99, 176));
+        botonAñadirAl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonAñadirAl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelBotonAñadirAl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelBotonAñadirAl.setForeground(new java.awt.Color(255, 255, 255));
+        labelBotonAñadirAl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelBotonAñadirAl.setText("Añadir Alumno");
+        labelBotonAñadirAl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                labelBotonAñadirAlMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelBotonAñadirAlMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelBotonAñadirAlMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelBotonAñadirAlMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                labelBotonAñadirAlMouseReleased(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 210, 53));
+        botonAñadirAl.add(labelBotonAñadirAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 70));
+        botonAñadirAl.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, -1));
 
-        backgorund.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 620));
+        panelIzquierdo.add(botonAñadirAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 290, 70));
 
-        jLabel2.setText("CONCEPTO DISEÑO BASE PUEDE CAMBIAR EN EL FUTURO");
-        backgorund.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 600, 430, 20));
+        botonListaprofes.setBackground(new java.awt.Color(47, 99, 176));
+        botonListaprofes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonListaprofes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setFocusable(false);
-
-        consola.setText("prueba");
-        consola.setFocusable(false);
-        consola.setHighlighter(null);
-        consola.setVerifyInputWhenFocusTarget(false);
-        jScrollPane1.setViewportView(consola);
-
-        backgorund.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 560, 430));
-
-        botonConsola.setText("boton de prueba");
-        botonConsola.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelMateria.setForeground(new java.awt.Color(255, 255, 255));
+        labelMateria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMateria.setText("\"Materias\"");
+        labelMateria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonConsolaMouseClicked(evt);
+                labelMateriaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelMateriaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelMateriaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelMateriaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                labelMateriaMouseReleased(evt);
             }
         });
-        backgorund.add(botonConsola, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, 170, -1));
+        botonListaprofes.add(labelMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 70));
+        botonListaprofes.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, -1));
 
-        campoConsola.setText("Campo de prueba");
-        backgorund.add(campoConsola, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 210, -1));
+        panelIzquierdo.add(botonListaprofes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 290, 70));
 
-        labelConsola.setText("Label de prueba");
-        backgorund.add(labelConsola, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, 110, -1));
+        botonSalir.setBackground(new java.awt.Color(47, 99, 176));
+        botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSalir.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelsalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelsalir.setForeground(new java.awt.Color(255, 255, 255));
+        labelsalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelsalir.setText("SALIR");
+        labelsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelsalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelsalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelsalirMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelsalirMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                labelsalirMouseReleased(evt);
+            }
+        });
+        botonSalir.add(labelsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 70));
+
+        panelIzquierdo.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 290, 70));
+
+        backgorund.add(panelIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 620));
+
+        contenido.setBackground(new java.awt.Color(255, 255, 255));
+        backgorund.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 650, 620));
 
         getContentPane().add(backgorund, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+    
+    
+    private void labelBotonCursoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonCursoMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonSalirActionPerformed
+        botonCurso.setBackground(azulClaro);
+    }//GEN-LAST:event_labelBotonCursoMouseEntered
 
-    private void botonBuscarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarAlActionPerformed
+    private void labelBotonCursoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonCursoMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscarAlActionPerformed
+        botonCurso.setBackground(azul);
+    }//GEN-LAST:event_labelBotonCursoMouseExited
 
-    private void botonListadecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListadecursosActionPerformed
+    private void labelBotonCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonCursoMouseClicked
+        /*
+        -----------------Lista curso------------------
+        */
+        PanelListaCurso current = new PanelListaCurso();
+        current.setSize(contenido.getSize());
+        current.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(current,BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_labelBotonCursoMouseClicked
+
+    private void labelBotonCursoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonCursoMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonListadecursosActionPerformed
+        botonCurso.setBackground(azul);
+    }//GEN-LAST:event_labelBotonCursoMousePressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void labelBotonCursoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonCursoMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        botonCurso.setBackground(azulClaro);
+    }//GEN-LAST:event_labelBotonCursoMouseReleased
 
-    private void botonAnadirAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirAlActionPerformed
+    private void labelBotonAñadirAlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonAñadirAlMouseClicked
+        /*
+        -----------------Añadir Alumno------------------
+        */
+        PanelAñadirAlumno current = new PanelAñadirAlumno();
+        current.setSize(650,620);
+        current.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(current,BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_labelBotonAñadirAlMouseClicked
+
+    private void labelBotonAñadirAlMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonAñadirAlMouseEntered
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_botonAnadirAlActionPerformed
+        botonAñadirAl.setBackground(azulClaro);
+    }//GEN-LAST:event_labelBotonAñadirAlMouseEntered
 
-    private void botonListadecursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonListadecursosMouseClicked
+    private void labelBotonAñadirAlMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonAñadirAlMouseExited
         // TODO add your handling code here:
-        
-        String linea="";
-        linea+="";
-        consola.setText("");
-        
-        lc=true;
-        lp=false;
-        ba=false;
-        aa=false;
-        
-        campoConsola.setVisible(true);
-        campoConsola.setText("");
-        labelConsola.setVisible(true);
-        labelConsola.setText("Ingrese la opcion tal cual esta en la consola:");
-        botonConsola.setText("opcion aun en desarollo");
-        
-    }//GEN-LAST:event_botonListadecursosMouseClicked
+        botonAñadirAl.setBackground(azul);
+    }//GEN-LAST:event_labelBotonAñadirAlMouseExited
 
-    private void botonBuscarAlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarAlMouseClicked
+    private void labelBotonAñadirAlMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonAñadirAlMousePressed
         // TODO add your handling code here:
-        consola.setText("");
-        
-        lc=false;
-        lp=false;
-        ba=true;
-        aa=false;
-        
-        campoConsola.setVisible(true);
-        campoConsola.setText("");
-        labelConsola.setVisible(true);
-        labelConsola.setText("Ingresar rut del alumno (con guion y puntos):");
-        botonConsola.setText("buscar alumno");
-    }//GEN-LAST:event_botonBuscarAlMouseClicked
+        botonAñadirAl.setBackground(azul);
+    }//GEN-LAST:event_labelBotonAñadirAlMousePressed
 
-    private void botonAnadirAlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirAlMouseClicked
+    private void labelBotonAñadirAlMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonAñadirAlMouseReleased
         // TODO add your handling code here:
-        consola.setText("");
-        
-        lc=false;
-        lp=false;
-        ba=false;
-        aa=true;
-        
-        campoConsola.setVisible(true);
-        campoConsola.setText("");
-        labelConsola.setVisible(true);
-        labelConsola.setText("Ingresar rut del alumno (con guion y puntos):");
-        botonConsola.setText("opcion aun en desarollo");
-    }//GEN-LAST:event_botonAnadirAlMouseClicked
+        botonAñadirAl.setBackground(azulClaro);
+    }//GEN-LAST:event_labelBotonAñadirAlMouseReleased
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void labelBuscarAlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarAlMouseClicked
+        /*
+        -----------------Buscar Alumno------------------
+        */
+        
+        PanelbuscarAlumno current = new PanelbuscarAlumno();
+        current.setSize(contenido.getSize());
+        current.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(current,BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+        
+        
+    }//GEN-LAST:event_labelBuscarAlMouseClicked
+
+    private void labelBuscarAlMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarAlMouseEntered
         // TODO add your handling code here:
-        consola.setText("");
-        
-        lc=false;
-        lp=true;
-        ba=false;
-        aa=false;
-        
-        campoConsola.setVisible(false);
-        campoConsola.setText("");
-        labelConsola.setVisible(false);
-        botonConsola.setText("mostrar lista");
-    }//GEN-LAST:event_jButton2MouseClicked
+        botonBuscarAl.setBackground(azulClaro);
+    }//GEN-LAST:event_labelBuscarAlMouseEntered
 
-    private void botonConsolaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonConsolaMouseClicked
+    private void labelBuscarAlMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarAlMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonConsolaMouseClicked
+        botonBuscarAl.setBackground(azul);
+    }//GEN-LAST:event_labelBuscarAlMouseExited
 
-    public static void ron () {
+    private void labelBuscarAlMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarAlMousePressed
+        // TODO add your handling code here:
+        botonBuscarAl.setBackground(azul);
+    }//GEN-LAST:event_labelBuscarAlMousePressed
+
+    private void labelBuscarAlMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarAlMouseReleased
+        // TODO add your handling code here:
+        botonBuscarAl.setBackground(azulClaro);
+    }//GEN-LAST:event_labelBuscarAlMouseReleased
+
+    private void labelMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMateriaMouseClicked
+        /*
+        -----------------Materias------------------
+        */
+        PanelMateria current = new PanelMateria();
+        current.setSize(contenido.getSize());
+        current.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(current,BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_labelMateriaMouseClicked
+
+    private void labelMateriaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMateriaMouseEntered
+        // TODO add your handling code here:
+        botonListaprofes.setBackground(azulClaro);
+    }//GEN-LAST:event_labelMateriaMouseEntered
+
+    private void labelMateriaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMateriaMouseExited
+        // TODO add your handling code here:
+        botonListaprofes.setBackground(azul);
+    }//GEN-LAST:event_labelMateriaMouseExited
+
+    private void labelMateriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMateriaMousePressed
+        // TODO add your handling code here:
+        botonListaprofes.setBackground(azul);
+    }//GEN-LAST:event_labelMateriaMousePressed
+
+    private void labelMateriaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMateriaMouseReleased
+        // TODO add your handling code here:
+        botonListaprofes.setBackground(azulClaro);
+    }//GEN-LAST:event_labelMateriaMouseReleased
+
+    private void labelPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPrincipalMouseClicked
+        // TODO add your handling code here:
+       PanelPrincipal current = new PanelPrincipal();
+        current.setSize(contenido.getSize());
+        current.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(current,BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_labelPrincipalMouseClicked
+
+    private void labelPrincipalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPrincipalMouseEntered
+        // TODO add your handling code here:
+        botonPrincipal.setBackground(azulClaro);
+    }//GEN-LAST:event_labelPrincipalMouseEntered
+
+    private void labelPrincipalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPrincipalMouseExited
+        // TODO add your handling code here:
+        botonPrincipal.setBackground(azul);
+    }//GEN-LAST:event_labelPrincipalMouseExited
+
+    private void labelPrincipalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPrincipalMousePressed
+        // TODO add your handling code here:
+        botonPrincipal.setBackground(azul);
+    }//GEN-LAST:event_labelPrincipalMousePressed
+
+    private void labelPrincipalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPrincipalMouseReleased
+        // TODO add your handling code here:
+        botonPrincipal.setBackground(azulClaro);
+    }//GEN-LAST:event_labelPrincipalMouseReleased
+
+    private void labelsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelsalirMouseClicked
+        // TODO add your handling code here:
+        System.exit(1);
+    }//GEN-LAST:event_labelsalirMouseClicked
+
+    private void labelsalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelsalirMouseEntered
+        // TODO add your handling code here:
+        botonSalir.setBackground(azulClaro);
+    }//GEN-LAST:event_labelsalirMouseEntered
+
+    private void labelsalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelsalirMouseExited
+        // TODO add your handling code here:
+        botonSalir.setBackground(azul);
+    }//GEN-LAST:event_labelsalirMouseExited
+
+    private void labelsalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelsalirMousePressed
+        // TODO add your handling code here:
+        botonSalir.setBackground(azul);
+    }//GEN-LAST:event_labelsalirMousePressed
+
+    private void labelsalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelsalirMouseReleased
+        // TODO add your handling code here:
+        botonSalir.setBackground(azulClaro);
+    }//GEN-LAST:event_labelsalirMouseReleased
+
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -286,29 +497,35 @@ public class VentanaMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new VentanaMenu().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanaMenu().setVisible(true);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgorund;
-    private javax.swing.JButton botonAnadirAl;
-    private javax.swing.JButton botonBuscarAl;
-    private javax.swing.JButton botonConsola;
-    private javax.swing.JButton botonListadecursos;
-    private javax.swing.JButton botonSalir;
-    private javax.swing.JTextField campoConsola;
-    private javax.swing.JTextPane consola;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labelConsola;
+    private javax.swing.JPanel botonAñadirAl;
+    private javax.swing.JPanel botonBuscarAl;
+    private javax.swing.JPanel botonCurso;
+    private javax.swing.JPanel botonListaprofes;
+    private javax.swing.JPanel botonPrincipal;
+    private javax.swing.JPanel botonSalir;
+    private javax.swing.JPanel contenido;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JLabel labelBotonAñadirAl;
+    private javax.swing.JLabel labelBotonCurso;
+    private javax.swing.JLabel labelBuscarAl;
+    private javax.swing.JLabel labelMateria;
+    private javax.swing.JLabel labelMenu;
+    private javax.swing.JLabel labelPrincipal;
+    private javax.swing.JLabel labelsalir;
+    private javax.swing.JPanel panelIzquierdo;
     // End of variables declaration//GEN-END:variables
-
 }
