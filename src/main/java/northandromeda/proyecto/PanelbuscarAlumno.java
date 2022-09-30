@@ -126,7 +126,7 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
 
         LabelTextoRut.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         LabelTextoRut.setText("Rut del alumno");
-        jPanel1.add(LabelTextoRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 100, 20));
+        jPanel1.add(LabelTextoRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 140, 20));
 
         Titulo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         Titulo.setText("BUSCAR ALUMNO");
@@ -176,7 +176,8 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
             
             ArrayList<String> notas = notasAlumno(current.getRut(),VentanaInicio.profe.getMateria()+".csv");
             
-            tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
+            if (notas != null){
+                tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"evaluacion 1", notas.get(0)},
                 {"evaluacion 2", notas.get(1)},
@@ -187,9 +188,22 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
             new String [] {
                 "EVALUACIONES", "NOTAS"
             }
-        ));
-        }else{
-            labelVerificador.setText("INGRESE RUT VALIDO");
+            ));
+            }else{
+                tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"evaluacion 1","0.0"},
+                {"evaluacion 2", "0.0"},
+                {"evaluacion 3", "0.0"},
+                {"evaluacion 4", "0.0"},
+                {"evaluacion 5", "0.0"}
+            },
+            new String [] {
+                "EVALUACIONES", "NOTAS"
+            }
+            ));
+                
+            }
         }
     }//GEN-LAST:event_labelBuscarMouseClicked
 
