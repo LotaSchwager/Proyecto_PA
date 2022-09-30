@@ -6,11 +6,8 @@
 package northandromeda.proyecto;
 
 import java.awt.Color;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
+import java.util.ArrayList;
+import static northandromeda.proyecto.CSV.notasAlumno;
 
 /**
  *
@@ -39,8 +36,6 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         labelVerificador = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaNotas = new javax.swing.JTable();
         labelMaterias = new javax.swing.JLabel();
         campoCurso = new javax.swing.JTextField();
         labelCurso = new javax.swing.JLabel();
@@ -52,6 +47,8 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
         LabelTextoRut = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaNotas = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,25 +59,11 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
         labelVerificador.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(labelVerificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 180, 20));
 
-        tablaNotas.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"calan", "1"}
-            },
-            new String [] {
-                "Asignaturas", "notas"
-            }
-        ));
-        tablaNotas.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tablaNotas);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 610, 310));
-
         labelMaterias.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labelMaterias.setText("Materias");
         jPanel1.add(labelMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 100, 23));
 
-        campoCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        campoCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         campoCurso.setEnabled(false);
         jPanel1.add(campoCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 200, -1));
 
@@ -106,7 +89,7 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
         labelBuscar.setForeground(new java.awt.Color(255, 255, 255));
         labelBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBuscar.setText("Buscar");
-        labelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelBuscarMouseClicked(evt);
@@ -150,6 +133,23 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
         jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, 40));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 240, 10));
 
+        tablaNotas.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "EVALUACIONES", "NOTAS"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaNotas);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 580, 290));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 600));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -168,17 +168,26 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
     private void labelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarMouseClicked
 
         if(!campoRut.getText().equals("")){
-            Alumno current ;
-            try {
-                labelVerificador.setText("");
-
-                current = Busqueda.buscarAlumno(campoRut.getText());
-                campoNombre.setText(current.getNombre());
-                campoCurso.setText(current.getCursodeAlumno());
-
-            } catch (IOException ex) {
-                Logger.getLogger(PanelbuscarAlumno.class.getName()).log(Level.SEVERE, null, ex);
+            Alumno current = null ;
+            labelVerificador.setText("");
+            current = Busqueda.buscarAlumno(campoRut.getText());
+            campoNombre.setText(current.getNombre());
+            campoCurso.setText(current.getCursodeAlumno());
+            
+            ArrayList<String> notas = notasAlumno(current.getRut(),VentanaInicio.profe.getMateria()+".csv");
+            
+            tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"evaluacion 1", notas.get(0)},
+                {"evaluacion 2", notas.get(1)},
+                {"evaluacion 3", notas.get(2)},
+                {"evaluacion 4", notas.get(3)},
+                {"evaluacion 5", notas.get(4)}
+            },
+            new String [] {
+                "EVALUACIONES", "NOTAS"
             }
+        ));
         }else{
             labelVerificador.setText("INGRESE RUT VALIDO");
         }

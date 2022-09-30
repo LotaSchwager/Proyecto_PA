@@ -1,8 +1,12 @@
 package northandromeda.proyecto;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static northandromeda.proyecto.Pobladordemapas.conjuntoDEprofes;
+import static northandromeda.proyecto.Pobladordemapas.listaAlumnos;
 
 public class Busqueda {
     
@@ -24,7 +28,7 @@ public class Busqueda {
     }
     
     //buscar alumno sin mostrar nada
-    static boolean buscarAlumno2(String decicion,HashMap<String,Curso> mapa){
+    static boolean buscarAlumno(String decicion,HashMap<String,Curso> mapa){
         for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
             
             if (valor.getValue().buscarAlumno(decicion)){
@@ -33,5 +37,23 @@ public class Busqueda {
             
         }
         return false;
+    }
+    
+    static Alumno buscarAlumno(String rut){
+        try {
+            ArrayList <Alumno> studiantes = listaAlumnos();
+            
+            for (int i = 0; i < studiantes.size(); i++){
+                
+                if (studiantes.get(i).getRut().equals(rut)){
+                    
+                    return studiantes.get(i);
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 }
