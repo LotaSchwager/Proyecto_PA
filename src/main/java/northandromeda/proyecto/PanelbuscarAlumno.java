@@ -120,7 +120,6 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
 
         jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 90, 20));
 
-        campoRut.setText("Ingrese rut");
         campoRut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoRutMouseClicked(evt);
