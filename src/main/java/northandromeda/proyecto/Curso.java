@@ -17,7 +17,7 @@ public class Curso {
         return this.mapaAlumnos.adherir(estudiante, rut);
     }
     
-    public boolean buscarAlumno (String clave){
+    public boolean booleanAlumno(String clave){
         
         return (this.mapaAlumnos.buscarPibe(clave)) != null;
     }
@@ -29,6 +29,16 @@ public class Curso {
     
     public void setCurso (String curso){
         this.curso = curso;
+    }
+    
+    public Alumno buscarAlumno (String rut){
+        
+        if (mapaAlumnos.claveUsada(rut)){
+             
+            return (Alumno)mapaAlumnos.buscarPibe(rut);
+        }
+        
+        return null;
     }
       
 }

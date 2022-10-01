@@ -446,8 +446,7 @@ public class VentanaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_labelPrincipalMouseReleased
 
     private void labelsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelsalirMouseClicked
-        // TODO add your handling code here:
-        System.exit(1);
+        System.exit(0);
     }//GEN-LAST:event_labelsalirMouseClicked
 
     private void labelsalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelsalirMouseEntered
@@ -470,11 +469,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         botonSalir.setBackground(azulClaro);
     }//GEN-LAST:event_labelsalirMouseReleased
 
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void ron(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

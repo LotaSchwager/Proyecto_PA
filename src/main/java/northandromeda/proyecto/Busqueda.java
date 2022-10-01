@@ -31,12 +31,25 @@ public class Busqueda {
     static boolean buscarAlumno(String decicion,HashMap<String,Curso> mapa){
         for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
             
-            if (valor.getValue().buscarAlumno(decicion)){
+            if (valor.getValue().booleanAlumno(decicion)){
                 return true;
             }
             
         }
         return false;
+    }
+    
+    static Alumno buscarAlumno2 (String rut, HashMap<String,Curso> mapa){
+        
+        for (Curso value : mapa.values()){
+            
+            if (value.booleanAlumno(rut)){
+                
+                return value.buscarAlumno(rut);
+            }
+        }
+        
+        return null;
     }
     
     static Alumno buscarAlumno(String rut){

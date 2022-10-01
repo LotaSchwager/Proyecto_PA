@@ -1,8 +1,8 @@
-
 package northandromeda.proyecto;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -174,4 +174,51 @@ public class CSV {
         }
         }        
     }
+    
+    public static void agregarNotasnueva(String archivo, String rut, String eva1, String eva2, String eva3, String eva4, String eva5){
+        String tempFile = "temp.csv";
+        File oldFile = new File (archivo);
+        File newFile = new File (tempFile);
+        String ruut = "";String eva01 = "";String eva02 = "";String eva03 = "";String eva04 = "";String eva05 = "";         
+        try{
+            FileWriter fw = new FileWriter (tempFile,true);
+            BufferedWriter bw = new BufferedWriter (fw);
+            PrintWriter pw = new PrintWriter (bw);
+            Scanner x = new Scanner (new File(archivo));
+            x.useDelimiter("[;\n]");
+            
+            while (x.hasNext()){
+                
+                ruut = x.next();
+                eva01 = x.next();
+                eva02 = x.next();
+                eva03 = x.next();
+                eva04 = x.next();
+                eva05 = x.next();
+                
+                if (ruut.equals(rut)){
+                    
+                    pw.println(rut + ";" + eva1 + ";" + eva2 + ";" + eva3 + ";" + eva4 + ";" + eva5);
+                
+                }else{
+                    
+                    pw.println(ruut + ";" + eva01 + ";" + eva02 + ";" + eva03 + ";" + eva04 + ";" + eva05);
+                }
+            }
+            
+            x.close();
+            pw.flush();
+            pw.close();
+            oldFile.delete();
+            File dump = new File (archivo);
+            newFile.renameTo(dump);
+                
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+    }   
+   
 }

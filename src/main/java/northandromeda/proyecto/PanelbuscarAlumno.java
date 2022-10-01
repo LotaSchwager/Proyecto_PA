@@ -133,7 +133,7 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
         jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, 40));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 240, 10));
 
-        tablaNotas.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        tablaNotas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
