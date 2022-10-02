@@ -1,13 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package northandromeda.proyecto;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import static northandromeda.proyecto.Pobladordemapas.conjuntoCurso;
-import static northandromeda.proyecto.Busqueda.obtenerVerificador;
-import static northandromeda.proyecto.Busqueda.toRut;
-import static northandromeda.proyecto.CSV.agregarAlumno;
-import static northandromeda.proyecto.CSV.nuevoAlumno;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
 
+/**
+ *
+ * @author yorch
+ */
 public class PanelAñadirAlumno extends javax.swing.JPanel {
     
     /**
@@ -32,22 +40,6 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        Nombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        Rut = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        CursoString = new javax.swing.JTextField();
-        AgregarALumno = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        NuevoNombre = new javax.swing.JLabel();
-        NuevoRut = new javax.swing.JLabel();
-        NuevoCurso = new javax.swing.JLabel();
-        WarningCurso = new javax.swing.JLabel();
-        WarningNombre = new javax.swing.JLabel();
-        WarningRut = new javax.swing.JLabel();
-        Finish = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,197 +52,12 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
         jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, 40));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 220, 10));
 
-        jLabel1.setBackground(new java.awt.Color(31, 31, 31));
-        jLabel1.setText("Escriba el nombre del nuevo alumno");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
-
-        Nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 370, -1));
-
-        jLabel2.setBackground(new java.awt.Color(38, 33, 33));
-        jLabel2.setText("Rut (Sin puntos ni guion, si termina en k no escriba el numero)");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 137, -1, 20));
-        jPanel1.add(Rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 370, -1));
-
-        jLabel3.setText("Curso");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        jPanel1.add(CursoString, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 120, -1));
-
-        AgregarALumno.setBackground(new java.awt.Color(33, 2, 184));
-        AgregarALumno.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AgregarALumnoMouseClicked(evt);
-            }
-        });
-
-        jLabel5.setText("Agregar");
-        AgregarALumno.add(jLabel5);
-
-        jPanel1.add(AgregarALumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 500, 60, 30));
-
-        jLabel4.setBackground(new java.awt.Color(37, 30, 30));
-        jLabel4.setText("Datos del alumno nuevo");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
-
-        NuevoNombre.setBackground(new java.awt.Color(29, 29, 29));
-        NuevoNombre.setText("Nombre :");
-        jPanel1.add(NuevoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 430, -1));
-
-        NuevoRut.setBackground(new java.awt.Color(37, 30, 30));
-        NuevoRut.setText("Rut :");
-        jPanel1.add(NuevoRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 560, -1));
-
-        NuevoCurso.setBackground(new java.awt.Color(25, 25, 25));
-        NuevoCurso.setText("Curso :");
-        jPanel1.add(NuevoCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 570, -1));
-        jPanel1.add(WarningCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 320, -1));
-        jPanel1.add(WarningNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 240, -1));
-        jPanel1.add(WarningRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 220, -1));
-        jPanel1.add(Finish, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 540, 100, -1));
-
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 600));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreActionPerformed
-
-    private void AgregarALumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarALumnoMouseClicked
-        if (Nombre.getText().equals("")){
-            Finish.setForeground(Color.white);
-            
-        }else if (Rut.getText().equals("")){
-            Finish.setForeground(Color.white);
-            
-        }else if (CursoString.getText().equals("")){
-            Finish.setForeground(Color.white);
-            
-        }else{
-            NuevoNombre.setText("Nombre : " + Nombre.getText() );
-            NuevoRut.setText("Rut : " + Rut.getText());
-            NuevoCurso.setText("Curso :" + CursoString.getText());
-            Finish.setForeground(Color.white);
-            ArrayList<String> cursos = conjuntoCurso();
-            
-            if (Busqueda.buscarCurso(CursoString.getText(), cursos)){
-                WarningCurso.setForeground(Color.white);
-                    
-                    if (Busqueda.nombreRepetido(Nombre.getText())){
-                        WarningNombre.setForeground(Color.white);
-                        
-                        try{
-                            int numero = Integer.valueOf(Rut.getText());
-                            WarningRut.setForeground(Color.white);
-                            
-                            if (!(Rut.getText().contains("."))){
-                                
-                                int digitos = (int)(Math.log10(numero)+1);
-                                
-                                if (digitos == 9 || digitos == 8){
-                                    
-                                    int rutAverificar;
-                                    if (digitos == 9){
-                                        rutAverificar = (int) numero / 10;
-                                    }else{
-                                        rutAverificar = numero;
-                                    }
-                                    
-                                    int verObtenido = obtenerVerificador(rutAverificar);
-                                    
-                                    if (digitos == 8 && verObtenido == 99){
-                                        WarningRut.setForeground(Color.white);
-                                        String rut = toRut(rutAverificar,verObtenido,8);
-                                        NuevoRut.setText("Rut : " + rut);
-                                        String[] nuevoEstudiante = {Nombre.getText(),rut,CursoString.getText()};
-                                        nuevoAlumno(nuevoEstudiante);
-                                        String[] nuevasNotas = {rut,"0.0","0.0","0.0","0.0","0.0"};
-                                        agregarAlumno(nuevasNotas,"matematicas.csv");
-                                        agregarAlumno(nuevasNotas,"lenguaje.csv");
-                                        agregarAlumno(nuevasNotas,"fisica.csv");
-                                        agregarAlumno(nuevasNotas,"biologia.csv");
-                                        agregarAlumno(nuevasNotas,"quimica.csv");
-                                        Finish.setForeground(Color.green);
-                                        Finish.setText("Agregado");
-                                        
-                                    }else{
-                                        
-                                        int verificador = (int) numero % 10;
-                                        if (digitos == 9 && verObtenido == verificador){
-                                            WarningRut.setForeground(Color.white);
-                                            String rut = toRut(rutAverificar,verObtenido,9);
-                                            NuevoRut.setText("Rut : " + rut);
-                                            String[] nuevoEstudiante = {Nombre.getText(),rut,CursoString.getText()};
-                                            nuevoAlumno(nuevoEstudiante);
-                                            String[] nuevasNotas = {rut,"0.0","0.0","0.0","0.0","0.0"};
-                                            agregarAlumno(nuevasNotas,"matematicas.csv");
-                                            agregarAlumno(nuevasNotas,"lenguaje.csv");
-                                            agregarAlumno(nuevasNotas,"fisica.csv");
-                                            agregarAlumno(nuevasNotas,"biologia.csv");
-                                            agregarAlumno(nuevasNotas,"quimica.csv");
-                                            Finish.setForeground(Color.green);
-                                            Finish.setText("Agregado");
-                                        
-                                        }else{
-                                            
-                                            WarningRut.setForeground(Color.red);
-                                            WarningRut.setText("Digito Verificador no valido");
-                                        }
-                                    }
-                                    
-                                }else{
-                                    WarningRut.setForeground(Color.red);
-                                    WarningRut.setText("Rut no valido");
-                                }
-                                
-                            }else{
-                                
-                                WarningRut.setForeground(Color.red);
-                                WarningRut.setText("Rut no valido"); 
-                            }
-                        
-                        }catch(NumberFormatException e){
-                            
-                           WarningRut.setForeground(Color.red);
-                           WarningRut.setText("Rut no valido"); 
-                        }
-                            
-                    }else{
-                        
-                        WarningNombre.setForeground(Color.red);
-                        WarningNombre.setText("Exite un alumno con ese nombre");
-                    }
-            
-            }else{
-                
-                WarningCurso.setForeground(Color.red);
-                WarningCurso.setText("El Curso tiene que existir");
-            }
-        }
-    }//GEN-LAST:event_AgregarALumnoMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel AgregarALumno;
-    private javax.swing.JTextField CursoString;
-    private javax.swing.JLabel Finish;
-    private javax.swing.JTextField Nombre;
-    private javax.swing.JLabel NuevoCurso;
-    private javax.swing.JLabel NuevoNombre;
-    private javax.swing.JLabel NuevoRut;
-    private javax.swing.JTextField Rut;
     private javax.swing.JLabel Titulo;
-    private javax.swing.JLabel WarningCurso;
-    private javax.swing.JLabel WarningNombre;
-    private javax.swing.JLabel WarningRut;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

@@ -6,18 +6,26 @@
 package northandromeda.proyecto;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import static northandromeda.proyecto.CSV.agregarNotasnueva;
-import static northandromeda.proyecto.CSV.notasAlumno;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
 
-
+/**
+ *
+ * @author yorch
+ */
 public class PanelMateria extends javax.swing.JPanel {
     
-
+    /**
+     * Creates new form panelbuscarAlumno
+     */
     public PanelMateria() {
         initComponents();
     }
        
+    
     private Color azulClaro = new Color(71,125,205);
     private Color azul = new Color(47,99,176);
     /**
@@ -32,32 +40,6 @@ public class PanelMateria extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        AlumnoRut = new javax.swing.JTextField();
-        BuscarAlumno = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaNotas = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        EVA05 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        EVA02 = new javax.swing.JTextField();
-        EVA03 = new javax.swing.JTextField();
-        EVA04 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        AlumnoNombre = new javax.swing.JLabel();
-        TextWarn = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        EVA01 = new javax.swing.JTextField();
-        Warning1 = new javax.swing.JLabel();
-        Warning2 = new javax.swing.JLabel();
-        Warning3 = new javax.swing.JLabel();
-        Warning4 = new javax.swing.JLabel();
-        Warning5 = new javax.swing.JLabel();
-        Warning6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,389 +48,17 @@ public class PanelMateria extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Titulo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        Titulo.setText("Editar Notas");
-        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 40));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 150, 10));
-
-        jLabel1.setText("Buscar Alumno");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 100, 20));
-
-        AlumnoRut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlumnoRutActionPerformed(evt);
-            }
-        });
-        jPanel1.add(AlumnoRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 150, -1));
-
-        BuscarAlumno.setBackground(new java.awt.Color(1, 1, 124));
-        BuscarAlumno.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BuscarAlumnoMouseClicked(evt);
-            }
-        });
-
-        jLabel7.setText("Buscar");
-        BuscarAlumno.add(jLabel7);
-
-        jPanel1.add(BuscarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 70, 30));
-
-        TablaNotas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(TablaNotas);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 450, 120));
-
-        jLabel2.setText("Evaluacion 1");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 90, 30));
-
-        EVA05.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EVA05ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(EVA05, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 520, 60, -1));
-
-        jLabel3.setText("Evaluacion 2");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
-
-        jLabel4.setText("Evaluacion 3");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, -1, -1));
-
-        jLabel5.setText("Evaluacion 4");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480, -1, -1));
-        jPanel1.add(EVA02, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 60, -1));
-        jPanel1.add(EVA03, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 60, -1));
-        jPanel1.add(EVA04, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, 60, -1));
-
-        jPanel2.setBackground(new java.awt.Color(1, 1, 119));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
-            }
-        });
-
-        jLabel8.setText("Agregar");
-        jPanel2.add(jLabel8);
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 550, 70, 30));
-
-        AlumnoNombre.setText("Nombre :");
-        jPanel1.add(AlumnoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 450, 20));
-        jPanel1.add(TextWarn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
-
-        jLabel6.setText("Evaluacion 5");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, -1, -1));
-
-        EVA01.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EVA01ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(EVA01, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 60, -1));
-        jPanel1.add(Warning1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 290, 20));
-        jPanel1.add(Warning2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 300, 30));
-        jPanel1.add(Warning3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 270, 30));
-        jPanel1.add(Warning4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, 270, 30));
-        jPanel1.add(Warning5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 270, 30));
-        jPanel1.add(Warning6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 580, 160, -1));
+        Titulo.setText("MATERIA");
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, 40));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 10));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 600));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AlumnoRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlumnoRutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AlumnoRutActionPerformed
-
-    private void EVA05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EVA05ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EVA05ActionPerformed
-
-    private void BuscarAlumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarAlumnoMouseClicked
-        
-        if (!(AlumnoRut.getText().equals(""))){
-            Alumno student = null;
-            student = Busqueda.buscarAlumno(AlumnoRut.getText());
-            if (student != null){
-                TextWarn.setForeground(Color.white);
-                AlumnoNombre.setText("Nombre : " + student.getNombre());
-                
-                ArrayList<String> notas = notasAlumno(student.getRut(),VentanaInicio.profe.getMateria()+".csv");
-                
-                if (notas != null){
-                    TablaNotas.setModel(new javax.swing.table.DefaultTableModel(
-                            new Object [][] {
-                                {"evaluacion 1", notas.get(0)},
-                                {"evaluacion 2", notas.get(1)},
-                                {"evaluacion 3", notas.get(2)},
-                                {"evaluacion 4", notas.get(3)},
-                                {"evaluacion 5", notas.get(4)}
-                            },
-                            new String [] {
-                                "EVALUACIONES", "NOTAS"
-                            }
-                    ));
-                }else{
-                    TablaNotas.setModel(new javax.swing.table.DefaultTableModel(
-                            new Object [][] {
-                                {"evaluacion 1","0.0"},
-                                {"evaluacion 2", "0.0"},
-                                {"evaluacion 3", "0.0"},
-                                {"evaluacion 4", "0.0"},
-                                {"evaluacion 5", "0.0"}
-                            },
-                            new String [] {
-                                "EVALUACIONES", "NOTAS"
-                            }
-                    ));
-                }
-                
-            }else{
-                
-                TextWarn.setForeground(Color.red);
-                TextWarn.setText("Rut Incorrecto");
-            }            
-        }
-    }//GEN-LAST:event_BuscarAlumnoMouseClicked
-
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        if (!(AlumnoRut.getText().equals(""))){
-            Alumno student = null;
-            student = Busqueda.buscarAlumno(AlumnoRut.getText());
-            if (student != null){
-                ArrayList<String> notas = notasAlumno(student.getRut(),VentanaInicio.profe.getMateria()+".csv");
-                String eva1, eva2, eva3, eva4, eva5;
-                
-                boolean ver1 = false;boolean ver2 = false;boolean ver3 = false;boolean ver4 = false;boolean ver5 = false;
-                
-                //Evaluacion 1
-                if (!EVA01.getText().equals("")){
-                    
-                    try{
-                        Double numero = Double.parseDouble(EVA01.getText());
-                        
-                        if (numero >= 0.0 && numero <= 7.0){
-                            
-                            ver1 = true;
-                            Warning1.setForeground(Color.white);
-                            eva1 = Double.toString(numero);
-                        
-                        }else{
-                            ver1 = false;
-                            eva1 = notas.get(0);
-                            Warning1.setForeground(Color.red);
-                            Warning1.setText("La nota tiene que estar entre 0.0 y 7.0");
-                            
-                        }
-                        
-                    }catch(NumberFormatException e) {
-                        
-                        ver1 = false;
-                        eva1 = notas.get(0);
-                        Warning1.setForeground(Color.red);
-                        Warning1.setText("No es un numero");
-                     }
-                
-                }else{
-                    ver1 = true;
-                    eva1 = notas.get(0);
-                }
-                
-                
-                //Evaluacion 2 eva2 = EVA02.getText();
-                if (!EVA02.getText().equals("")){
-                    
-                    try{
-                        Double numero = Double.parseDouble(EVA02.getText());
-                        
-                        if (numero >= 0.0 && numero <= 7.0){
-                            
-                            ver2 = true;
-                            Warning2.setForeground(Color.white);
-                            eva2 = Double.toString(numero);
-                        
-                        }else{
-                            ver2 = false;
-                            eva2 = notas.get(1);
-                            Warning2.setForeground(Color.red);
-                            Warning2.setText("La nota tiene que estar entre 0.0 y 7.0");
-                            
-                        }
-                        
-                    }catch(NumberFormatException e) {
-                        
-                        ver2 = false;
-                        eva2 = notas.get(1);
-                        Warning2.setForeground(Color.red);
-                        Warning2.setText("No es un numero");
-                     }
-                
-                }else{
-                    ver2 = true;
-                    eva2 = notas.get(1);
-                }
-                
-                
-                //Evaluacion 3 eva3 = EVA03.getText();
-                if (!EVA03.getText().equals("")){
-                    
-                    try{
-                        Double numero = Double.parseDouble(EVA03.getText());
-                        
-                        if (numero >= 0.0 && numero <= 7.0){
-                            
-                            ver3 = true;
-                            Warning3.setForeground(Color.white);
-                            eva3 = Double.toString(numero);
-                        
-                        }else{
-                            ver3 = false;
-                            eva3 = notas.get(2);
-                            Warning3.setForeground(Color.red);
-                            Warning3.setText("La nota tiene que estar entre 0.0 y 7.0");
-                            
-                        }
-                        
-                    }catch(NumberFormatException e) {
-                        
-                        ver3 = false;
-                        eva3 = notas.get(2);
-                        Warning3.setForeground(Color.red);
-                        Warning3.setText("No es un numero");
-                     }
-                
-                }else{
-                    ver3 = true;
-                    eva3 = notas.get(2);
-                }
-                
-                
-                //Evaluacion 4 eva4 = EVA04.getText();
-                if (!EVA04.getText().equals("")){
-                    
-                    try{
-                        Double numero = Double.parseDouble(EVA04.getText());
-                        
-                        if (numero >= 0.0 && numero <= 7.0){
-                            
-                            ver4 = true;
-                            Warning4.setForeground(Color.white);
-                            eva4 = Double.toString(numero);
-                        
-                        }else{
-                            ver4 = false;
-                            eva4 = notas.get(3);
-                            Warning4.setForeground(Color.red);
-                            Warning4.setText("La nota tiene que estar entre 0.0 y 7.0");
-                            
-                        }
-                        
-                    }catch(NumberFormatException e) {
-                        
-                        ver4 = false;
-                        eva4 = notas.get(3);
-                        Warning4.setForeground(Color.red);
-                        Warning4.setText("No es un numero");
-                     }
-                
-                }else{
-                    ver4 = true;
-                    eva4 = notas.get(3);
-                }
-                
-                
-                //Evaluacion 5 eva5 = EVA05.getText();
-                if (!EVA05.getText().equals("")){
-                    
-                    try{
-                        Double numero = Double.parseDouble(EVA05.getText());
-                        
-                        if (numero >= 0.0 && numero <= 7.0){
-                            
-                            ver5 = true;
-                            Warning5.setForeground(Color.white);
-                            eva5 = Double.toString(numero);
-                        
-                        }else{
-                            ver5 = false;
-                            eva5 = notas.get(4);
-                            Warning5.setForeground(Color.red);
-                            Warning5.setText("La nota tiene que estar entre 0.0 y 7.0");
-                            
-                        }
-                        
-                    }catch(NumberFormatException e) {
-                        
-                        ver5 = false;
-                        eva5 = notas.get(4);
-                        Warning5.setForeground(Color.red);
-                        Warning5.setText("No es un numero");
-                     }
-                
-                }else{
-                    ver5 = true;
-                    eva5 = notas.get(4);
-                }
-                
-                
-                //Agregar Notas
-                if (ver1 && ver2 && ver3 && ver4 & ver5){
-                    Warning6.setForeground(Color.green);
-                    Warning6.setText("Cambio hecho");
-                    agregarNotasnueva(VentanaInicio.profe.getMateria()+".csv", student.getRut(), eva1,eva2,eva3,eva4,eva5);
-                
-                }else{
-                    
-                    Warning6.setForeground(Color.red);
-                    Warning6.setText("Hay una nota incorrecta");
-                }
-            }          
-        }
-        
-    }//GEN-LAST:event_jPanel2MouseClicked
-
-    private void EVA01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EVA01ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EVA01ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AlumnoNombre;
-    private javax.swing.JTextField AlumnoRut;
-    private javax.swing.JPanel BuscarAlumno;
-    private javax.swing.JTextField EVA01;
-    private javax.swing.JTextField EVA02;
-    private javax.swing.JTextField EVA03;
-    private javax.swing.JTextField EVA04;
-    private javax.swing.JTextField EVA05;
-    private javax.swing.JTable TablaNotas;
-    private javax.swing.JLabel TextWarn;
     private javax.swing.JLabel Titulo;
-    private javax.swing.JLabel Warning1;
-    private javax.swing.JLabel Warning2;
-    private javax.swing.JLabel Warning3;
-    private javax.swing.JLabel Warning4;
-    private javax.swing.JLabel Warning5;
-    private javax.swing.JLabel Warning6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
