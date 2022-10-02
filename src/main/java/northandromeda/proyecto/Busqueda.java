@@ -162,4 +162,23 @@ public class Busqueda {
         }
 
     }
+    static Lust BuscarALumnosCursos(String curso){
+        try {
+            ArrayList <Alumno> studiantes = listaAlumnos();
+            Lust list = new Lust();
+            for (int i = 0; i < studiantes.size(); i++){
+                
+                if (studiantes.get(i).getCursodeAlumno().equals(curso)){
+                    
+                    list.agregar(studiantes.get(i));
+                }
+            }
+            
+            return list;
+        } catch (IOException ex) {
+            Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
 }

@@ -100,4 +100,27 @@ public class Pobladordemapas {
             return null;
         }
     }
+    
+    public static String[] listadoCurso() throws IOException{
+            
+        ArrayList<Alumno> alumnos = listaAlumnos ();
+        ArrayList<String> lista = new ArrayList();
+        
+        lista.add(alumnos.get(0).getCursodeAlumno());
+        
+        for(int i=1;i<alumnos.size();i++){
+            if(!lista.contains(alumnos.get(i).getCursodeAlumno())){
+                lista.add(alumnos.get(i).getCursodeAlumno());
+            }
+        }
+        
+        String[] r = new String[lista.size()];
+        
+        for(int i=0;i<lista.size();i++){
+            r[i]=lista.get(i);
+        }
+        
+        return r;
+     
+    }
 }

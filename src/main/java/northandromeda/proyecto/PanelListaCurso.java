@@ -10,7 +10,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import static northandromeda.proyecto.Busqueda.BuscarALumnosCursos;
+import static northandromeda.proyecto.Pobladordemapas.listadoCurso;
 import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
+
 
 /**
  *
@@ -28,6 +32,7 @@ public class PanelListaCurso extends javax.swing.JPanel {
     
     private Color azulClaro = new Color(71,125,205);
     private Color azul = new Color(47,99,176);
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +44,13 @@ public class PanelListaCurso extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        botonObtenerCursos = new javax.swing.JPanel();
+        labelBoton = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        boxCursos = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaAlumnos = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,15 +61,150 @@ public class PanelListaCurso extends javax.swing.JPanel {
         Titulo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         Titulo.setText("LISTA CURSO");
         jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, 40));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Selecione un curso");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 240, 20));
+
+        botonObtenerCursos.setBackground(new java.awt.Color(47, 99, 176));
+        botonObtenerCursos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelBoton.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelBoton.setForeground(new java.awt.Color(255, 255, 255));
+        labelBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelBoton.setText("Obtener cursos");
+        labelBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelBotonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelBotonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                labelBotonMouseReleased(evt);
+            }
+        });
+        botonObtenerCursos.add(labelBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 20));
+
+        jPanel1.add(botonObtenerCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 100, 20));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 200, 10));
+
+        boxCursos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        boxCursos.setEnabled(false);
+        boxCursos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                boxCursosItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(boxCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 110, 20));
+
+        tablaAlumnos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NOMBRE", "RUT"
+            }
+        ));
+        tablaAlumnos.setEnabled(false);
+        jScrollPane1.setViewportView(tablaAlumnos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 580, 400));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 600));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void labelBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonMouseClicked
+        try {
+
+            String[] items = listadoCurso();
+            
+            boxCursos.setModel(new javax.swing.DefaultComboBoxModel<>(items));
+            boxCursos.setEnabled(true);  
+            
+            //aplicamos en la primera tabla
+            
+            Lust alumnos = BuscarALumnosCursos(items[0]);
+            
+            String[][] lista = new String[alumnos.lustSize()][2];
+            
+            Alumno current;
+            
+            for(int i = 0;i<alumnos.lustSize();i++){
+                current=(Alumno) alumnos.getLust(i);
+                lista[i][0]=current.getNombre();
+                lista[i][1]=current.getRut();
+            }
+            
+            tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+            lista,
+            new String [] {
+                "NOMBRE", "RUT"
+            }
+            ));
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PanelListaCurso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labelBotonMouseClicked
+
+    private void boxCursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxCursosItemStateChanged
+        
+        Lust alumnos = BuscarALumnosCursos(boxCursos.getSelectedItem().toString());
+
+        String[][] lista = new String[alumnos.lustSize()][2];
+
+        Alumno current;
+
+        for(int i = 0;i<alumnos.lustSize();i++){
+            current=(Alumno) alumnos.getLust(i);
+            lista[i][0]=current.getNombre();
+            lista[i][1]=current.getRut();
+        }
+
+        tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        lista,
+        new String [] {
+            "NOMBRE", "RUT"
+        }
+        ));
+        
+        
+    }//GEN-LAST:event_boxCursosItemStateChanged
+
+    private void labelBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonMouseEntered
+        botonObtenerCursos.setBackground(azulClaro);
+    }//GEN-LAST:event_labelBotonMouseEntered
+
+    private void labelBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonMouseExited
+        botonObtenerCursos.setBackground(azul);
+    }//GEN-LAST:event_labelBotonMouseExited
+
+    private void labelBotonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonMousePressed
+        botonObtenerCursos.setBackground(azul);
+    }//GEN-LAST:event_labelBotonMousePressed
+
+    private void labelBotonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonMouseReleased
+        botonObtenerCursos.setBackground(azulClaro);
+    }//GEN-LAST:event_labelBotonMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
+    private javax.swing.JPanel botonObtenerCursos;
+    private javax.swing.JComboBox<String> boxCursos;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labelBoton;
+    private javax.swing.JTable tablaAlumnos;
     // End of variables declaration//GEN-END:variables
 }
