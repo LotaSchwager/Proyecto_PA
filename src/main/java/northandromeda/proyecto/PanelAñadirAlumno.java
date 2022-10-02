@@ -1,21 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package northandromeda.proyecto;
 
 import java.awt.Color;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
+import java.util.ArrayList;
+import static northandromeda.proyecto.Busqueda.buscarAlumno;
+import static northandromeda.proyecto.Pobladordemapas.conjuntoCurso;
+import static northandromeda.proyecto.Busqueda.obtenerVerificador;
+import static northandromeda.proyecto.Busqueda.toRut;
+import static northandromeda.proyecto.CSV.agregarAlumno;
+import static northandromeda.proyecto.CSV.nuevoAlumno;
 
-/**
- *
- * @author yorch
- */
 public class PanelAñadirAlumno extends javax.swing.JPanel {
     
     /**
@@ -40,6 +33,27 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        labelNombre = new javax.swing.JLabel();
+        Nombre = new javax.swing.JTextField();
+        labelCurso = new javax.swing.JLabel();
+        CursoString = new javax.swing.JTextField();
+        notaCurso = new javax.swing.JLabel();
+        labelRut = new javax.swing.JLabel();
+        Rut = new javax.swing.JTextField();
+        notaRut = new javax.swing.JLabel();
+        botonAgregarALumno = new javax.swing.JPanel();
+        labelBoton = new javax.swing.JLabel();
+        LabelDatos = new javax.swing.JLabel();
+        labelNuevoNombre = new javax.swing.JLabel();
+        NuevoNombre = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        labelNuevoRut = new javax.swing.JLabel();
+        NuevoRut = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        lavelNuevoCurso = new javax.swing.JLabel();
+        NuevoCurso = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        notaPanel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,13 +66,248 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
         jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, 40));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 220, 10));
 
+        labelNombre.setBackground(new java.awt.Color(31, 31, 31));
+        labelNombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelNombre.setText("Escriba el nombre del nuevo alumno");
+        jPanel1.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        Nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 370, -1));
+
+        labelCurso.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelCurso.setText("Curso");
+        jPanel1.add(labelCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
+        jPanel1.add(CursoString, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 150, -1));
+
+        notaCurso.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        notaCurso.setText("Curso debe estar registado");
+        jPanel1.add(notaCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
+
+        labelRut.setBackground(new java.awt.Color(38, 33, 33));
+        labelRut.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelRut.setText("Rut ");
+        jPanel1.add(labelRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, 20));
+        jPanel1.add(Rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 210, -1));
+
+        notaRut.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        notaRut.setText("Sin puntos ni guion, si tiene K no la escriba");
+        jPanel1.add(notaRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 210, -1));
+
+        botonAgregarALumno.setBackground(new java.awt.Color(47, 99, 176));
+        botonAgregarALumno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonbotonAgregarALumnoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonAgregarALumnoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonAgregarALumnoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonAgregarALumnoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonAgregarALumnoMouseReleased(evt);
+            }
+        });
+        botonAgregarALumno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelBoton.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelBoton.setForeground(new java.awt.Color(255, 255, 255));
+        labelBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelBoton.setText("Agregar");
+        botonAgregarALumno.add(labelBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 20));
+
+        jPanel1.add(botonAgregarALumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 80, 20));
+
+        LabelDatos.setBackground(new java.awt.Color(37, 30, 30));
+        LabelDatos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        LabelDatos.setText("Datos del alumno nuevo");
+        jPanel1.add(LabelDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+
+        labelNuevoNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        labelNuevoNombre.setText("NOMBRE:");
+        jPanel1.add(labelNuevoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
+
+        NuevoNombre.setBackground(new java.awt.Color(29, 29, 29));
+        NuevoNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jPanel1.add(NuevoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 420, 20));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 420, 10));
+
+        labelNuevoRut.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        labelNuevoRut.setText("Rut:");
+        jPanel1.add(labelNuevoRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
+
+        NuevoRut.setBackground(new java.awt.Color(37, 30, 30));
+        NuevoRut.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jPanel1.add(NuevoRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 420, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, 420, 10));
+
+        lavelNuevoCurso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lavelNuevoCurso.setText("Curso:");
+        jPanel1.add(lavelNuevoCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, -1, -1));
+
+        NuevoCurso.setBackground(new java.awt.Color(25, 25, 25));
+        NuevoCurso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jPanel1.add(NuevoCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 430, 20));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 420, 10));
+
+        notaPanel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        notaPanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        notaPanel.setText("Nota: Los cambios no se aplicaran hasta que ingrese los datos correctamente");
+        jPanel1.add(notaPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 580, 440, -1));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 600));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreActionPerformed
+
+    private void botonbotonAgregarALumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonbotonAgregarALumnoMouseClicked
+        if (Nombre.getText().equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Nombre en Blanco", "ERROR DE LECTURA",  javax.swing.JOptionPane.ERROR_MESSAGE);
+        }else if (Rut.getText().equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Rut en Blanco", "ERROR DE LECTURA",  javax.swing.JOptionPane.ERROR_MESSAGE);
+        }else if (CursoString.getText().equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Curso en Blanco", "ERROR DE LECTURA",  javax.swing.JOptionPane.ERROR_MESSAGE);
+        }else{
+            NuevoNombre.setText("Nombre : " + Nombre.getText() );
+            NuevoRut.setText("Rut : " + Rut.getText());
+            NuevoCurso.setText("Curso :" + CursoString.getText());
+            ArrayList<String> cursos = conjuntoCurso();
+            
+            if (Busqueda.buscarCurso(CursoString.getText(), cursos)){
+                    
+                    if (Busqueda.nombreRepetido(Nombre.getText())){
+                        
+                        if(buscarAlumno(Rut.getText())!=null){
+                            try{
+                                int numero = Integer.valueOf(Rut.getText());
+
+                                if (!(Rut.getText().contains("."))){
+
+                                    int digitos = (int)(Math.log10(numero)+1);
+
+                                    if (digitos == 9 || digitos == 8){
+
+                                        int rutAverificar;
+                                        if (digitos == 9){
+                                            rutAverificar = (int) numero / 10;
+                                        }else{
+                                            rutAverificar = numero;
+                                        }
+
+                                        int verObtenido = obtenerVerificador(rutAverificar);
+
+                                        if (digitos == 8 && verObtenido == 99){
+                                            String rut = toRut(rutAverificar,verObtenido,8);
+                                            NuevoRut.setText("Rut : " + rut);
+                                            String[] nuevoEstudiante = {Nombre.getText(),rut,CursoString.getText()};
+                                            nuevoAlumno(nuevoEstudiante);
+                                            String[] nuevasNotas = {rut,"0.0","0.0","0.0","0.0","0.0"};
+                                            agregarAlumno(nuevasNotas,"matematicas.csv");
+                                            agregarAlumno(nuevasNotas,"lenguaje.csv");
+                                            agregarAlumno(nuevasNotas,"fisica.csv");
+                                            agregarAlumno(nuevasNotas,"biologia.csv");
+                                            agregarAlumno(nuevasNotas,"quimica.csv");
+
+                                        }else{
+
+                                            int verificador = (int) numero % 10;
+                                            if (digitos == 9 && verObtenido == verificador){
+                                                String rut = toRut(rutAverificar,verObtenido,9);
+                                                NuevoRut.setText("Rut : " + rut);
+                                                String[] nuevoEstudiante = {Nombre.getText(),rut,CursoString.getText()};
+                                                nuevoAlumno(nuevoEstudiante);
+                                                String[] nuevasNotas = {rut,"0.0","0.0","0.0","0.0","0.0"};
+                                                agregarAlumno(nuevasNotas,"matematicas.csv");
+                                                agregarAlumno(nuevasNotas,"lenguaje.csv");
+                                                agregarAlumno(nuevasNotas,"fisica.csv");
+                                                agregarAlumno(nuevasNotas,"biologia.csv");
+                                                agregarAlumno(nuevasNotas,"quimica.csv");
+
+                                            }else{
+
+                                                javax.swing.JOptionPane.showMessageDialog(this, "Digito Verificador no valido","RUT INVALIDO" ,  javax.swing.JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }
+
+                                    }else{
+                                        javax.swing.JOptionPane.showMessageDialog(this, "ingrese el rut sin puntos ni guin, si contiene k no la escriba", "RUT INVALIDO",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                                    }
+
+                                }else{
+
+                                    javax.swing.JOptionPane.showMessageDialog(this, "ingrese el rut sin puntos ni guin, si contiene k no la escriba", "RUT INVALIDO",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                                }
+
+                            }catch(NumberFormatException e){
+
+                               javax.swing.JOptionPane.showMessageDialog(this, "ingrese el rut sin puntos ni guin, si contiene k no la escriba", "RUT INVALIDO",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                            }
+                        }else{
+                            javax.swing.JOptionPane.showMessageDialog(this, "Ya existe un alumno con ese rut", "RUT EXISTENTE",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }    
+                            
+                    }else{
+                        
+                        javax.swing.JOptionPane.showMessageDialog(this, "Ya existe un alumno con ese nombre", "ALUMNO EXISTENTE",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                    }
+            
+            }else{
+                
+                javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un curso registrado. Puede revisar los nombres en la seccion Lista Cursos", "CURSO NO REGISTRADO",  javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_botonbotonAgregarALumnoMouseClicked
+
+    private void botonAgregarALumnoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarALumnoMouseEntered
+        botonAgregarALumno.setBackground(azulClaro);
+    }//GEN-LAST:event_botonAgregarALumnoMouseEntered
+
+    private void botonAgregarALumnoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarALumnoMouseExited
+        botonAgregarALumno.setBackground(azul);
+    }//GEN-LAST:event_botonAgregarALumnoMouseExited
+
+    private void botonAgregarALumnoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarALumnoMousePressed
+        botonAgregarALumno.setBackground(azul);
+    }//GEN-LAST:event_botonAgregarALumnoMousePressed
+
+    private void botonAgregarALumnoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarALumnoMouseReleased
+        botonAgregarALumno.setBackground(azulClaro);
+    }//GEN-LAST:event_botonAgregarALumnoMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CursoString;
+    private javax.swing.JLabel LabelDatos;
+    private javax.swing.JTextField Nombre;
+    private javax.swing.JLabel NuevoCurso;
+    private javax.swing.JLabel NuevoNombre;
+    private javax.swing.JLabel NuevoRut;
+    private javax.swing.JTextField Rut;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JPanel botonAgregarALumno;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel labelBoton;
+    private javax.swing.JLabel labelCurso;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelNuevoNombre;
+    private javax.swing.JLabel labelNuevoRut;
+    private javax.swing.JLabel labelRut;
+    private javax.swing.JLabel lavelNuevoCurso;
+    private javax.swing.JLabel notaCurso;
+    private javax.swing.JLabel notaPanel;
+    private javax.swing.JLabel notaRut;
     // End of variables declaration//GEN-END:variables
 }

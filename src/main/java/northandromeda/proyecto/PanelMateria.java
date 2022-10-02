@@ -6,26 +6,18 @@
 package northandromeda.proyecto;
 
 import java.awt.Color;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
+import java.util.ArrayList;
+import static northandromeda.proyecto.CSV.agregarNotasnueva;
+import static northandromeda.proyecto.CSV.notasAlumno;
 
-/**
- *
- * @author yorch
- */
+
 public class PanelMateria extends javax.swing.JPanel {
     
-    /**
-     * Creates new form panelbuscarAlumno
-     */
+
     public PanelMateria() {
         initComponents();
     }
        
-    
     private Color azulClaro = new Color(71,125,205);
     private Color azul = new Color(47,99,176);
     /**
@@ -40,6 +32,27 @@ public class PanelMateria extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        labelRut = new javax.swing.JLabel();
+        AlumnoRut = new javax.swing.JTextField();
+        BuscarAlumno = new javax.swing.JPanel();
+        labelBotonRut = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaNotas = new javax.swing.JTable();
+        labelEva1 = new javax.swing.JLabel();
+        labelEva2 = new javax.swing.JLabel();
+        labelEva3 = new javax.swing.JLabel();
+        labelEva4 = new javax.swing.JLabel();
+        labelEva5 = new javax.swing.JLabel();
+        EVA01 = new javax.swing.JTextField();
+        EVA02 = new javax.swing.JTextField();
+        EVA03 = new javax.swing.JTextField();
+        EVA04 = new javax.swing.JTextField();
+        EVA05 = new javax.swing.JTextField();
+        botonAgregar = new javax.swing.JPanel();
+        labelBotonAgregar = new javax.swing.JLabel();
+        AlumnoNombre = new javax.swing.JLabel();
+        Warning6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -48,17 +61,429 @@ public class PanelMateria extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Titulo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        Titulo.setText("MATERIA");
+        Titulo.setText("Editar Notas");
         jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, 40));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 150, 10));
+
+        labelRut.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelRut.setText("Rut del alumno");
+        jPanel1.add(labelRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 200, 20));
+
+        AlumnoRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlumnoRutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(AlumnoRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, -1));
+
+        BuscarAlumno.setBackground(new java.awt.Color(47, 99, 176));
+        BuscarAlumno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BuscarAlumnoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BuscarAlumnoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BuscarAlumnoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BuscarAlumnoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BuscarAlumnoMouseReleased(evt);
+            }
+        });
+        BuscarAlumno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelBotonRut.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelBotonRut.setForeground(new java.awt.Color(255, 255, 255));
+        labelBotonRut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelBotonRut.setText("Buscar");
+        BuscarAlumno.add(labelBotonRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 20));
+
+        jPanel1.add(BuscarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, 20));
+
+        TablaNotas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "EVALUACIONES", "NOTAS"
+            }
+        ));
+        jScrollPane1.setViewportView(TablaNotas);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 520, 120));
+
+        labelEva1.setText("Evaluacion 1");
+        jPanel1.add(labelEva1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 70, 20));
+
+        labelEva2.setText("Evaluacion 2");
+        jPanel1.add(labelEva2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 70, 20));
+
+        labelEva3.setText("Evaluacion 3");
+        jPanel1.add(labelEva3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 70, 20));
+
+        labelEva4.setText("Evaluacion 4");
+        jPanel1.add(labelEva4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 70, 20));
+
+        labelEva5.setText("Evaluacion 5");
+        jPanel1.add(labelEva5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, 70, 20));
+
+        EVA01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EVA01ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(EVA01, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 60, -1));
+        jPanel1.add(EVA02, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 60, -1));
+        jPanel1.add(EVA03, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 60, -1));
+        jPanel1.add(EVA04, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 60, -1));
+
+        EVA05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EVA05ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(EVA05, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 60, -1));
+
+        botonAgregar.setBackground(new java.awt.Color(47, 99, 176));
+        botonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAgregarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonAgregarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonAgregarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botonAgregarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonAgregarMouseReleased(evt);
+            }
+        });
+        botonAgregar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelBotonAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        labelBotonAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelBotonAgregar.setText("Agregar");
+        botonAgregar.add(labelBotonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 30));
+
+        jPanel1.add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, 140, 30));
+
+        AlumnoNombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        AlumnoNombre.setText("Nombre :");
+        jPanel1.add(AlumnoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 450, 20));
+
+        Warning6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        Warning6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(Warning6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 500, 200, 20));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel2.setText("Nota: Rut con puntos y guion");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 200, 10));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 600));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AlumnoRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlumnoRutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlumnoRutActionPerformed
+
+    private void EVA05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EVA05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EVA05ActionPerformed
+
+    private void BuscarAlumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarAlumnoMouseClicked
+        
+        if (!(AlumnoRut.getText().equals(""))){
+            Alumno student = null;
+            student = Busqueda.buscarAlumno(AlumnoRut.getText());
+            if (student != null){
+                AlumnoNombre.setText("Nombre : " + student.getNombre());
+                
+                ArrayList<String> notas = notasAlumno(student.getRut(),VentanaInicio.profe.getMateria()+".csv");
+                
+                if (notas != null){
+                    TablaNotas.setModel(new javax.swing.table.DefaultTableModel(
+                            new Object [][] {
+                                {"evaluacion 1", notas.get(0)},
+                                {"evaluacion 2", notas.get(1)},
+                                {"evaluacion 3", notas.get(2)},
+                                {"evaluacion 4", notas.get(3)},
+                                {"evaluacion 5", notas.get(4)}
+                            },
+                            new String [] {
+                                "EVALUACIONES", "NOTAS"
+                            }
+                    ));
+                }else{
+                    TablaNotas.setModel(new javax.swing.table.DefaultTableModel(
+                            new Object [][] {
+                                {"evaluacion 1","0.0"},
+                                {"evaluacion 2", "0.0"},
+                                {"evaluacion 3", "0.0"},
+                                {"evaluacion 4", "0.0"},
+                                {"evaluacion 5", "0.0"}
+                            },
+                            new String [] {
+                                "EVALUACIONES", "NOTAS"
+                            }
+                    ));
+                }
+                
+            }else{
+                
+                javax.swing.JOptionPane.showMessageDialog(this, "Rut Invalido", "ERROR DE LECTURA",  javax.swing.JOptionPane.ERROR_MESSAGE);
+            }            
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, "Rut Invalido", "ERROR DE LECTURA",  javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BuscarAlumnoMouseClicked
+
+    private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
+        if (!(AlumnoRut.getText().equals(""))){
+            Alumno student = null;
+            student = Busqueda.buscarAlumno(AlumnoRut.getText());
+            if (student != null){
+                ArrayList<String> notas = notasAlumno(student.getRut(),VentanaInicio.profe.getMateria()+".csv");
+                String eva1, eva2, eva3, eva4, eva5;
+                
+                boolean ver1 = false;boolean ver2 = false;boolean ver3 = false;boolean ver4 = false;boolean ver5 = false;
+                
+                //Evaluacion 1
+                if (!EVA01.getText().equals("")){
+                    
+                    try{
+                        Double numero = Double.parseDouble(EVA01.getText());
+                        
+                        if (numero >= 0.0 && numero <= 7.0){
+                            
+                            ver1 = true;
+                            eva1 = Double.toString(numero);
+                        
+                        }else{
+                            ver1 = false;
+                            eva1 = notas.get(0);
+                            javax.swing.JOptionPane.showMessageDialog(this, "La nota tiene que estar entre 0.0 y 7.0", "EVALUACION 01",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+                        
+                    }catch(NumberFormatException e) {
+                        
+                        ver1 = false;
+                        eva1 = notas.get(0);
+                        javax.swing.JOptionPane.showMessageDialog(this, "No es un numero", "EVALUACION 01",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                     }
+                
+                }else{
+                    ver1 = true;
+                    eva1 = notas.get(0);
+                }
+                
+                
+                //Evaluacion 2 eva2 = EVA02.getText();
+                if (!EVA02.getText().equals("")){
+                    
+                    try{
+                        Double numero = Double.parseDouble(EVA02.getText());
+                        
+                        if (numero >= 0.0 && numero <= 7.0){
+                            
+                            ver2 = true;
+                            eva2 = Double.toString(numero);
+                        
+                        }else{
+                            ver2 = false;
+                            eva2 = notas.get(1);
+                            javax.swing.JOptionPane.showMessageDialog(this, "La nota tiene que estar entre 0.0 y 7.0", "EVALUACION 02",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                            
+                        }
+                        
+                    }catch(NumberFormatException e) {
+                        
+                        ver2 = false;
+                        eva2 = notas.get(1);
+                        javax.swing.JOptionPane.showMessageDialog(this, "No es un numero", "EVALUACION 02",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                     }
+                
+                }else{
+                    ver2 = true;
+                    eva2 = notas.get(1);
+                }
+                
+                
+                //Evaluacion 3 eva3 = EVA03.getText();
+                if (!EVA03.getText().equals("")){
+                    
+                    try{
+                        Double numero = Double.parseDouble(EVA03.getText());
+                        
+                        if (numero >= 0.0 && numero <= 7.0){
+                            
+                            ver3 = true;
+                            eva3 = Double.toString(numero);
+                        
+                        }else{
+                            ver3 = false;
+                            eva3 = notas.get(2);
+                            javax.swing.JOptionPane.showMessageDialog(this, "La nota tiene que estar entre 0.0 y 7.0", "EVALUACION 03",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+                        
+                    }catch(NumberFormatException e) {
+                        
+                        ver3 = false;
+                        eva3 = notas.get(2);
+                        javax.swing.JOptionPane.showMessageDialog(this, "No es un numero", "EVALUACION 03",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                     }
+                
+                }else{
+                    ver3 = true;
+                    eva3 = notas.get(2);
+                }
+                
+                
+                //Evaluacion 4 eva4 = EVA04.getText();
+                if (!EVA04.getText().equals("")){
+                    
+                    try{
+                        Double numero = Double.parseDouble(EVA04.getText());
+                        
+                        if (numero >= 0.0 && numero <= 7.0){
+                            
+                            ver4 = true;
+                            eva4 = Double.toString(numero);
+                        
+                        }else{
+                            ver4 = false;
+                            eva4 = notas.get(3);
+                            javax.swing.JOptionPane.showMessageDialog(this, "La nota tiene que estar entre 0.0 y 7.0", "EVALUACION 04",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+                        
+                    }catch(NumberFormatException e) {
+                        
+                        ver4 = false;
+                        eva4 = notas.get(3);
+                        javax.swing.JOptionPane.showMessageDialog(this, "No es un numero", "EVALUACION 04",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                     }
+                
+                }else{
+                    ver4 = true;
+                    eva4 = notas.get(3);
+                }
+                
+                
+                //Evaluacion 5 eva5 = EVA05.getText();
+                if (!EVA05.getText().equals("")){
+                    
+                    try{
+                        Double numero = Double.parseDouble(EVA05.getText());
+                        
+                        if (numero >= 0.0 && numero <= 7.0){
+                            
+                            ver5 = true;
+                            eva5 = Double.toString(numero);
+                        
+                        }else{
+                            ver5 = false;
+                            eva5 = notas.get(4);
+                            javax.swing.JOptionPane.showMessageDialog(this, "La nota tiene que estar entre 0.0 y 7.0", "EVALUACION 05",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+                        
+                    }catch(NumberFormatException e) {
+                        
+                        ver5 = false;
+                        eva5 = notas.get(4);
+                        javax.swing.JOptionPane.showMessageDialog(this, "No es un numero", "EVALUACION 05",  javax.swing.JOptionPane.ERROR_MESSAGE);
+                     }
+                
+                }else{
+                    ver5 = true;
+                    eva5 = notas.get(4);
+                }
+                
+                
+                //Agregar Notas
+                if (ver1 && ver2 && ver3 && ver4 & ver5){
+                    
+                    Warning6.setForeground(Color.black);
+                    Warning6.setText("Cambio hecho");
+                    agregarNotasnueva(VentanaInicio.profe.getMateria()+".csv", student.getRut(), eva1,eva2,eva3,eva4,eva5);
+                
+                }else{
+                    
+                    Warning6.setForeground(Color.red);
+                    Warning6.setText("Hay una nota incorrecta");
+                }
+            }          
+        }
+        
+    }//GEN-LAST:event_botonAgregarMouseClicked
+
+    private void EVA01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EVA01ActionPerformed
+        
+    }//GEN-LAST:event_EVA01ActionPerformed
+
+    private void BuscarAlumnoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarAlumnoMouseEntered
+        BuscarAlumno.setBackground(azulClaro);
+    }//GEN-LAST:event_BuscarAlumnoMouseEntered
+
+    private void BuscarAlumnoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarAlumnoMouseExited
+        BuscarAlumno.setBackground(azul);
+    }//GEN-LAST:event_BuscarAlumnoMouseExited
+
+    private void BuscarAlumnoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarAlumnoMousePressed
+        BuscarAlumno.setBackground(azul);
+    }//GEN-LAST:event_BuscarAlumnoMousePressed
+
+    private void BuscarAlumnoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarAlumnoMouseReleased
+        BuscarAlumno.setBackground(azulClaro);
+    }//GEN-LAST:event_BuscarAlumnoMouseReleased
+
+    private void botonAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseEntered
+        botonAgregar.setBackground(azulClaro);
+    }//GEN-LAST:event_botonAgregarMouseEntered
+
+    private void botonAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseExited
+        botonAgregar.setBackground(azul);
+    }//GEN-LAST:event_botonAgregarMouseExited
+
+    private void botonAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMousePressed
+        botonAgregar.setBackground(azul);
+    }//GEN-LAST:event_botonAgregarMousePressed
+
+    private void botonAgregarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseReleased
+        botonAgregar.setBackground(azulClaro);
+    }//GEN-LAST:event_botonAgregarMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AlumnoNombre;
+    private javax.swing.JTextField AlumnoRut;
+    private javax.swing.JPanel BuscarAlumno;
+    private javax.swing.JTextField EVA01;
+    private javax.swing.JTextField EVA02;
+    private javax.swing.JTextField EVA03;
+    private javax.swing.JTextField EVA04;
+    private javax.swing.JTextField EVA05;
+    private javax.swing.JTable TablaNotas;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel Warning6;
+    private javax.swing.JPanel botonAgregar;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labelBotonAgregar;
+    private javax.swing.JLabel labelBotonRut;
+    private javax.swing.JLabel labelEva1;
+    private javax.swing.JLabel labelEva2;
+    private javax.swing.JLabel labelEva3;
+    private javax.swing.JLabel labelEva4;
+    private javax.swing.JLabel labelEva5;
+    private javax.swing.JLabel labelRut;
     // End of variables declaration//GEN-END:variables
 }

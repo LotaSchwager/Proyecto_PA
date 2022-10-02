@@ -53,6 +53,9 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
         labelMateriaTitulo = new javax.swing.JLabel();
         labelMateria = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,25 +63,25 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelMaterias.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelMaterias.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labelMaterias.setText("Notas:");
-        jPanel1.add(labelMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 100, 23));
+        jPanel1.add(labelMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 100, 23));
 
-        labelNombreTitulo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelNombreTitulo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labelNombreTitulo.setText("Nombre:");
-        jPanel1.add(labelNombreTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 100, 23));
+        jPanel1.add(labelNombreTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 100, 23));
 
         labelNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 340, 20));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 340, 10));
+        jPanel1.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 340, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 340, 10));
 
-        labelCursoTitulo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelCursoTitulo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labelCursoTitulo.setText("Curso:");
-        jPanel1.add(labelCursoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 100, 23));
+        jPanel1.add(labelCursoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 100, 23));
 
         labelCurso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(labelCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 340, 20));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 340, 10));
+        jPanel1.add(labelCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 340, 20));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 340, 10));
 
         botonBuscar.setBackground(new java.awt.Color(47, 99, 176));
 
@@ -118,7 +121,7 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
                 .addComponent(labelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 90, 20));
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, 20));
 
         campoRut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,15 +175,28 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
             tablaNotas.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 430, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 510, 110));
 
-        labelMateriaTitulo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelMateriaTitulo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labelMateriaTitulo.setText("Materia:");
-        jPanel1.add(labelMateriaTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 100, 23));
+        jPanel1.add(labelMateriaTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 100, 23));
 
         labelMateria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(labelMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 340, 20));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 340, 10));
+        jPanel1.add(labelMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 340, 20));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 340, 10));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel1.setText("Datos del Alumno:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel2.setText("Nota: Rut con puntos y guion");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 200, 10));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Nota: el promedio podria no ser el final");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 500, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 600));
     }// </editor-fold>//GEN-END:initComponents
@@ -191,10 +207,6 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
 
     private void campoRutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoRutMouseClicked
         // TODO add your handling code here:
-        if(campoRut.getText().equals("Ingrese su rut")){
-            campoRut.setText("");
-            campoRut.setForeground(Color.black);
-        }
     }//GEN-LAST:event_campoRutMouseClicked
 
     private void labelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarMouseClicked
@@ -208,6 +220,7 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
             labelCurso.setText(current.getCursodeAlumno());
             labelMateria.setText(VentanaInicio.profe.getMateria());
             ArrayList<String> notas = notasAlumno(current.getRut(),VentanaInicio.profe.getMateria()+".csv");
+            current.setPromedio();
             
             if (notas != null){
                 tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
@@ -216,7 +229,8 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
                     {"evaluacion 2", notas.get(1)},
                     {"evaluacion 3", notas.get(2)},
                     {"evaluacion 4", notas.get(3)},
-                    {"evaluacion 5", notas.get(4)}
+                    {"evaluacion 5", notas.get(4)},
+                    {"Promedio", current.getPromedio()}
                     },
                     new String [] {
                         "EVALUACIONES", "NOTAS"
@@ -229,7 +243,8 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
                     {"evaluacion 2", "0"},
                     {"evaluacion 3", "0"},
                     {"evaluacion 4", "0"},
-                    {"evaluacion 5", "0"}
+                    {"evaluacion 5", "0"},
+                    {"Promedio", "0"}
                     },
                     new String [] {
                         "EVALUACIONES", "NOTAS"
@@ -263,6 +278,9 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
     private javax.swing.JLabel Titulo;
     private javax.swing.JPanel botonBuscar;
     private javax.swing.JTextField campoRut;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

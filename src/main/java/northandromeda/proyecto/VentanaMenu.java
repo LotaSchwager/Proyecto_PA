@@ -86,7 +86,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         panelIzquierdo.add(labelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 290, 80));
 
         botonPrincipal.setBackground(new java.awt.Color(47, 99, 176));
-        botonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         botonPrincipal.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 68, 290, -1));
 
@@ -116,7 +116,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         panelIzquierdo.add(botonPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 290, 70));
 
         botonCurso.setBackground(new java.awt.Color(47, 99, 176));
-        botonCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonCurso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelBotonCurso.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -145,7 +145,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         panelIzquierdo.add(botonCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 290, 70));
 
         botonBuscarAl.setBackground(new java.awt.Color(47, 99, 176));
-        botonBuscarAl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonBuscarAl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonBuscarAl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelBuscarAl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -175,7 +175,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         panelIzquierdo.add(botonBuscarAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 290, 70));
 
         botonAñadirAl.setBackground(new java.awt.Color(47, 99, 176));
-        botonAñadirAl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonAñadirAl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonAñadirAl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelBotonAñadirAl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -205,13 +205,13 @@ public class VentanaMenu extends javax.swing.JFrame {
         panelIzquierdo.add(botonAñadirAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 290, 70));
 
         botonListaprofes.setBackground(new java.awt.Color(47, 99, 176));
-        botonListaprofes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonListaprofes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonListaprofes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelMateria.setForeground(new java.awt.Color(255, 255, 255));
         labelMateria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelMateria.setText("\"Materias\"");
+        labelMateria.setText("Editar Notas");
         labelMateria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelMateriaMouseClicked(evt);
@@ -235,7 +235,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         panelIzquierdo.add(botonListaprofes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 290, 70));
 
         botonSalir.setBackground(new java.awt.Color(47, 99, 176));
-        botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonSalir.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelsalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

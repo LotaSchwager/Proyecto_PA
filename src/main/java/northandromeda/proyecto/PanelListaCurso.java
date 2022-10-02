@@ -51,6 +51,7 @@ public class PanelListaCurso extends javax.swing.JPanel {
         boxCursos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAlumnos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -113,10 +114,13 @@ public class PanelListaCurso extends javax.swing.JPanel {
                 "NOMBRE", "RUT"
             }
         ));
-        tablaAlumnos.setEnabled(false);
         jScrollPane1.setViewportView(tablaAlumnos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 580, 400));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setText("Nota: no se aplican cambios al editar la tabla");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, -1, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 600));
     }// </editor-fold>//GEN-END:initComponents
@@ -200,6 +204,7 @@ public class PanelListaCurso extends javax.swing.JPanel {
     private javax.swing.JLabel Titulo;
     private javax.swing.JPanel botonObtenerCursos;
     private javax.swing.JComboBox<String> boxCursos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
