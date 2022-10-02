@@ -40,5 +40,22 @@ public class Curso {
         
         return null;
     }
+    
+        public boolean NombreRepetido (String nombre){
+        Lust lista = mapaAlumnos.obtieneLista();
+        
+        for (int i = 0; i < lista.lustSize(); i++){
+            Alumno estudiante = (Alumno) lista.getLust(i);
+            
+            if (estudiante.getNombre().equals(nombre)){
+                
+                return true;
+            }
+            
+        }
+        
+        return false;
+        
+    }
       
 }

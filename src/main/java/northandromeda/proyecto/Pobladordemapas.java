@@ -3,6 +3,8 @@ package northandromeda.proyecto;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static northandromeda.proyecto.CSV.*;
 import static northandromeda.proyecto.Busqueda.buscarAlumno;
 
@@ -68,30 +70,6 @@ public class Pobladordemapas {
         return curse;
     }
 
-    //nuevo alumno
-    public static HashMap<String,Curso> agregarAlumnoalMapa(String nombre, String rut, String curso, HashMap<String,Curso> mapa){
-            
-           if (buscarAlumno(rut,mapa)){
-                return mapa;
-               
-           }else{
-               Alumno alumni = new Alumno(nombre,rut,curso);           
-               
-               if (mapa.containsKey(curso)){
-                  Curso cursoExistente = mapa.get(curso);
-                  cursoExistente.agregarAlumnos(alumni, rut);
-            
-               }else{
-                  Curso nuevoCurso = new Curso (curso);
-                  nuevoCurso.agregarAlumnos(alumni, rut);
-                  mapa.put(curso, nuevoCurso);
-               }
-            
-               return mapa;
-           }
-     
-    }
-
     public static HashMap<String,Profesor> conjuntoDEprofes() throws IOException{
         HashMap<String,Profesor> conjunto = new HashMap<>();
         
@@ -107,5 +85,19 @@ public class Pobladordemapas {
         }
         
         return conjunto;
-    }   
+    }
+    
+    public static ArrayList<String> conjuntoCurso(){
+        
+        try {
+            ArrayList<String> cursos = parametroCsvCurso ("curso", "Alumnos.csv");
+            
+            return cursos;
+            
+        } catch (IOException ex) {
+            
+            Logger.getLogger(Pobladordemapas.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

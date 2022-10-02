@@ -28,28 +28,36 @@ public class Busqueda {
     }
     
     //buscar alumno sin mostrar nada
-    static boolean buscarAlumno(String decicion,HashMap<String,Curso> mapa){
-        for(HashMap.Entry<String,Curso> valor : mapa.entrySet()){
+    static boolean nombreRepetido (String nombre){
+        try {
+            ArrayList <Alumno> alumnos = listaAlumnos();
             
-            if (valor.getValue().booleanAlumno(decicion)){
-                return true;
+            for (int i = 0; i < alumnos.size(); i++){
+                
+                if (alumnos.get(i).getNombre().equals(nombre)){
+                    
+                    return false;
+                }
             }
             
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-        return false;
     }
     
-    static Alumno buscarAlumno2 (String rut, HashMap<String,Curso> mapa){
+    static boolean buscarCurso (String curso, ArrayList <String> list){
         
-        for (Curso value : mapa.values()){
+        for (int i = 0; i < list.size(); i++){
             
-            if (value.booleanAlumno(rut)){
+            if (list.get(i).equals(curso)){
                 
-                return value.buscarAlumno(rut);
+                return true;
             }
         }
         
-        return null;
+        return false;
     }
     
     static Alumno buscarAlumno(String rut){
@@ -68,5 +76,90 @@ public class Busqueda {
         }
         
         return null;
+    }
+    
+    public static int reverseNumero(int numero){
+        
+      int rev = 0; // reversed number
+      int rem;   // remainder
+        
+      while(numero > 0){
+           
+        rem = numero%10;
+        rev = (rev*10) + rem;
+        numero = numero/10;
+      }
+        
+      return rev;
+    }
+    
+    public static int obtenerVerificador (int numero){
+        int reverso = reverseNumero(numero);
+        int primer = (int)reverso / 10000000;
+        int segundo = ((int)reverso / 1000000) % 10;
+        int tercero = ((int)reverso / 100000) % 10;
+        int cuarto = ((int)reverso / 10000) % 10;
+        int quinto = ((int)reverso / 1000) % 10;
+        int sexto = ((int)reverso / 100) % 10;
+        int septimo = ((int)reverso / 10) % 10;
+        int octavo = (int)(reverso % 10);
+        
+        int[] reversoVector = {primer,segundo,tercero,cuarto,quinto,sexto,septimo,octavo};
+        int[] multiplicadores = {2,3,4,5,6,7};
+        int[] sumas = new int[8];
+        
+        int j = 0;
+        for(int i = 0; i < reversoVector.length; i++){
+            
+            if (j == 6){j = 0;}
+            
+            sumas[i] = reversoVector[i] * multiplicadores[j];
+            j++;
+        }
+        
+        int sumaTotal = 0;
+        for (int i = 0; i < sumas.length; i++){
+            
+            sumaTotal += sumas[i];
+        }
+        
+        int sumaInt = (int)sumaTotal / 11;
+        
+        sumaInt = sumaInt * 11;
+        
+        int definitivo = Math.abs(sumaTotal - sumaInt);
+        
+        definitivo = 11 - definitivo;
+        
+        if (definitivo == 11) return 0;
+        
+        if (definitivo == 10) return 99;
+        
+        return definitivo;
+        
+    }
+    
+    public static String toRut (int numero, int digito, int version){
+        String primer = String.valueOf((int)numero / 10000000);
+        String segundo =  String.valueOf(((int)numero / 1000000) % 10);
+        String tercero = String.valueOf(((int)numero / 100000) % 10);
+        String cuarto = String.valueOf(((int)numero / 10000) % 10);
+        String quinto = String.valueOf(((int)numero / 1000) % 10);
+        String sexto = String.valueOf( ((int)numero / 100) % 10);
+        String septimo = String.valueOf(((int)numero / 10) % 10);
+        String octavo = String.valueOf((int)(numero % 10));
+        String digito2 = String.valueOf(digito);
+        
+        if (version == 8){
+            
+            String rut = primer+segundo+"."+tercero+cuarto+quinto+"."+sexto+septimo+octavo+"-"+"k";
+            return rut;
+        
+        }else{
+            
+            String rut = primer+segundo+"."+tercero+cuarto+quinto+"."+sexto+septimo+octavo+"-"+digito2;
+            return rut;
+        }
+
     }
 }
