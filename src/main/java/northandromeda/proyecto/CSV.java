@@ -2,9 +2,11 @@ package northandromeda.proyecto;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static northandromeda.proyecto.Busqueda.buscarAlumno;
 
 public class CSV {
     
@@ -219,6 +221,75 @@ public class CSV {
             Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
-    }   
+    }
+    
+        public static void archivoTXT(HashMap<String, Curso> cursos, ArrayList<Alumno> alumnos){
+        File oldFile = new File ("Archivo.txt");
+        oldFile.delete();
+        
+        File newFile = new File("Archivo.txt");
+        BufferedWriter bw= null;
+        try{
+            bw = new BufferedWriter(new FileWriter(newFile));
+            
+            bw.write("Clase Curso :");
+            bw.newLine();
+            for (Curso value : cursos.values()){
+                bw.newLine();
+                bw.write("Curso : " + value.getCurso());
+                bw.newLine();
+                bw.newLine();
+                bw.write("Alumnos de este curso :");
+                bw.newLine();
+                bw.newLine();
+                
+                for (int i = 0; i < alumnos.size(); i++){
+                    
+                    Alumno estudainte = buscarAlumno(alumnos.get(i).getRut());
+                    
+                    if (estudainte != null){
+                        
+                        bw.write(estudainte.getNombre());
+                        bw.newLine();
+                    }
+                }
+                
+                bw.write("-------------------------------------------");
+                bw.newLine();
+                bw.newLine();
+            }
+            
+            bw.newLine();
+            bw.write("Clase Alumno :");
+            bw.newLine();
+            for (int i = 0; i < alumnos.size(); i++){
+                
+                bw.newLine();
+                bw.write("Nombre :" + alumnos.get(i).getNombre());
+                bw.newLine();
+                bw.write("Rut :" + alumnos.get(i).getRut());
+                bw.newLine();
+                bw.write("Curso :" + alumnos.get(i).getCursodeAlumno());
+                bw.newLine();
+                bw.write("-----------------------------------------");
+                
+            }
+
+                
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{{
+            if (bw != null){
+                try{
+                    bw.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        }
+    }
    
 }
