@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="Mapardo" package="northandromeda.proyecto" visibility="public" xPosition="1749.0" yPosition="1759.0">
+      <Fields>
+        <Field name="mapa" type="HashMap" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="adherir" returnType="boolean" visibility="public">
+          <Argument type="Object" name="pibardo"/>
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="buscarPibe" returnType="Object" visibility="public">
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="largo" returnType="int" visibility="public"/>
+        <Method name="claveUsada" returnType="boolean" visibility="public">
+          <Argument type="String" name="clave"/>
+        </Method>
+        <Method name="obtieneLista" returnType="Lust" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Curso" package="northandromeda.proyecto" visibility="public" xPosition="1266.0" yPosition="1740.0">
+      <Fields>
+        <Field name="curso" type="String" visibility="private"/>
+        <Field name="mapaAlumnos" type="Mapardo" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="curso"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="agregarAlumnos" returnType="boolean" visibility="public">
+          <Argument type="Alumno" name="estudiante"/>
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="booleanAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="clave"/>
+        </Method>
+        <Method name="getCurso" returnType="String" visibility="public"/>
+        <Method name="setCurso" returnType="void" visibility="public">
+          <Argument type="String" name="curso"/>
+        </Method>
+        <Method name="buscarAlumno" returnType="Alumno" visibility="public">
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="NombreRepetido" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CSV" package="northandromeda.proyecto" visibility="public" xPosition="1937.0" yPosition="651.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="parametroCSV" returnType="ArrayList&lt;String&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="parametro"/>
+          <Argument type="String" name="nombreArchivo"/>
+        </Method>
+        <Method name="parametroCsvCurso" returnType="ArrayList&lt;String&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="parametroALeer"/>
+          <Argument type="String" name="nombreArchivo"/>
+        </Method>
+        <Method name="buscarColumna_CSV" returnType="int" visibility="public" isStatic="true">
+          <Argument type="String" name="linea"/>
+          <Argument type="String" name="columnaDeaseada"/>
+        </Method>
+        <Method name="agregarAlumno" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="alumno"/>
+          <Argument type="String" name="archivo"/>
+        </Method>
+        <Method name="notasAlumno" returnType="ArrayList&lt;String&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="rut"/>
+          <Argument type="String" name="archivo"/>
+        </Method>
+        <Method name="nuevoAlumno" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="alumno"/>
+        </Method>
+        <Method name="agregarNotasnueva" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="archivo"/>
+          <Argument type="String" name="rut"/>
+          <Argument type="String" name="eva1"/>
+          <Argument type="String" name="eva2"/>
+          <Argument type="String" name="eva3"/>
+          <Argument type="String" name="eva4"/>
+          <Argument type="String" name="eva5"/>
+        </Method>
+        <Method name="archivoTXT" returnType="void" visibility="public" isStatic="true">
+          <Argument type="HashMap&lt;String, Curso&gt;" name="cursos"/>
+          <Argument type="ArrayList&lt;Alumno&gt;" name="alumnos"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Alumno" package="northandromeda.proyecto" visibility="public" xPosition="1317.0" yPosition="556.0">
+      <Fields>
+        <Field name="curso" type="String" visibility="private"/>
+        <Field name="promedio" type="Double" visibility="private"/>
+        <Field name="notas" type="Lust" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="rut"/>
+          <Argument type="String" name="curso"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCursodeAlumno" returnType="String" visibility="public"/>
+        <Method name="getPromedio" returnType="Double" visibility="public"/>
+        <Method name="setPromedio" returnType="void" visibility="public"/>
+        <Method name="setCursodeAlumno" returnType="void" visibility="public">
+          <Argument type="String" name="curso"/>
+        </Method>
+        <Method name="agregarNotas" returnType="void" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="getNota" returnType="String" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Pobladordemapas" package="northandromeda.proyecto" visibility="public" xPosition="1012.0" yPosition="1284.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="creatorAlumnos" returnType="Lust" visibility="public" isStatic="true">
+          <Argument type="String" name="materia"/>
+        </Method>
+        <Method name="listaAlumnos" returnType="ArrayList&lt;Alumno&gt;" visibility="public" isStatic="true"/>
+        <Method name="pobladorMapaCursos" returnType="HashMap&lt;String, Curso&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="materia"/>
+        </Method>
+        <Method name="conjuntoDEprofes" returnType="HashMap&lt;String, Profesor&gt;" visibility="public" isStatic="true"/>
+        <Method name="conjuntoCurso" returnType="ArrayList&lt;String&gt;" visibility="public" isStatic="true"/>
+        <Method name="listadoCurso" returnType="String[]" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Persona" package="northandromeda.proyecto" visibility="public" isAbstract="true" xPosition="1033.0" yPosition="252.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="rut" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="rut"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getRut" returnType="String" visibility="public"/>
+        <Method name="setRut" returnType="void" visibility="public">
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IOExeption" package="northandromeda.proyecto" visibility="public" xPosition="1097.0" yPosition="651.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="error" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Lust" package="northandromeda.proyecto" visibility="public" xPosition="1773.0" yPosition="1070.0">
+      <Fields>
+        <Field name="lista" type="ArrayList" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="agregar" returnType="void" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="getLust" returnType="Object" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="agregar" returnType="void" visibility="public">
+          <Argument type="int" name="index"/>
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="lustSize" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Busqueda" package="northandromeda.proyecto" visibility="public" xPosition="444.0" yPosition="1011.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="correctPassword" returnType="boolean" visibility="package" isStatic="true">
+          <Argument type="Profesor" name="profe"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="buscarProfesor" returnType="Profesor" visibility="package" isStatic="true">
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="nombreRepetido" returnType="boolean" visibility="package" isStatic="true">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="buscarCurso" returnType="boolean" visibility="package" isStatic="true">
+          <Argument type="String" name="curso"/>
+          <Argument type="ArrayList&lt;String&gt;" name="list"/>
+        </Method>
+        <Method name="buscarCurso" returnType="Lust" visibility="package" isStatic="true">
+          <Argument type="String" name="curso"/>
+        </Method>
+        <Method name="buscarAlumno" returnType="Alumno" visibility="package" isStatic="true">
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="reverseNumero" returnType="int" visibility="public" isStatic="true">
+          <Argument type="int" name="numero"/>
+        </Method>
+        <Method name="obtenerVerificador" returnType="int" visibility="public" isStatic="true">
+          <Argument type="int" name="numero"/>
+        </Method>
+        <Method name="toRut" returnType="String" visibility="public" isStatic="true">
+          <Argument type="int" name="numero"/>
+          <Argument type="int" name="digito"/>
+          <Argument type="int" name="version"/>
+        </Method>
+        <Method name="BuscarALumnosCursos" returnType="Lust" visibility="package" isStatic="true">
+          <Argument type="String" name="curso"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Profesor" package="northandromeda.proyecto" visibility="public" xPosition="586.0" yPosition="613.0">
+      <Fields>
+        <Field name="materia" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="rut"/>
+          <Argument type="String" name="materia"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMateria" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setMateria" returnType="void" visibility="public">
+          <Argument type="String" name="materia"/>
+        </Method>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="northandromeda.proyecto.Profesor" target="northandromeda.proyecto.Persona"/>
+    <HasRelation name="notas" source="northandromeda.proyecto.Alumno" target="northandromeda.proyecto.Lust" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Curso" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.Curso" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Lust" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="northandromeda.proyecto.Alumno" target="northandromeda.proyecto.Persona"/>
+    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Profesor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.CSV" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.Busqueda" target="northandromeda.proyecto.Lust" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mapaAlumnos" source="northandromeda.proyecto.Curso" target="northandromeda.proyecto.Mapardo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Mapardo"/>
+    <UseRelation source="northandromeda.proyecto.Busqueda" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.Mapardo" target="northandromeda.proyecto.Lust" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.Busqueda" target="northandromeda.proyecto.Profesor" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
