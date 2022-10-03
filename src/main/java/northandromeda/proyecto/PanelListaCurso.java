@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import static northandromeda.proyecto.Busqueda.BuscarALumnosCursos;
+import static northandromeda.proyecto.Busqueda.buscarCurso;
 import static northandromeda.proyecto.Pobladordemapas.listadoCurso;
 import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
 
@@ -135,7 +135,7 @@ public class PanelListaCurso extends javax.swing.JPanel {
             
             //aplicamos en la primera tabla
             
-            Lust alumnos = BuscarALumnosCursos(items[0]);
+            Lust alumnos = buscarCurso(items[0]);
             
             String[][] lista = new String[alumnos.lustSize()][2];
             
@@ -161,7 +161,7 @@ public class PanelListaCurso extends javax.swing.JPanel {
 
     private void boxCursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxCursosItemStateChanged
         
-        Lust alumnos = BuscarALumnosCursos(boxCursos.getSelectedItem().toString());
+        Lust alumnos = buscarCurso(boxCursos.getSelectedItem().toString());
 
         String[][] lista = new String[alumnos.lustSize()][2];
 
