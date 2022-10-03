@@ -5,6 +5,7 @@ public class Alumno extends Persona {
     private Double promedio;
     private Lust notas;
         
+   //Constructor 
     public Alumno (String nombre, String rut, String curso){
         super(nombre,rut);
         this.curso = curso;
@@ -21,6 +22,7 @@ public class Alumno extends Persona {
         return this.promedio;
     }
     
+    //Se actualiza el promedio
     public void setPromedio(){
         
         Double sumaNotas = 0.0;
@@ -35,11 +37,13 @@ public class Alumno extends Persona {
         this.curso = curso;
     }
     
+    //Se agrega Notas
     public void agregarNotas (Object obj){
         
         notas.agregar(obj);
     }
     
+    //Obtener la nota de una posicion
     public String getNota (int index){
         
         return (String)this.notas.getLust(index);

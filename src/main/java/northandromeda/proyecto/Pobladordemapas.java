@@ -34,6 +34,7 @@ public class Pobladordemapas {
         return all;
     }
     
+    //Se obtiene una lista de alumnos proveniente del csv alumnos
     public static ArrayList<Alumno> listaAlumnos () throws IOException{
         ArrayList alumnos = new ArrayList<>();
         
@@ -69,7 +70,8 @@ public class Pobladordemapas {
         
         return curse;
     }
-
+   
+    //Se crea un hashmap de profesores del csv para los profe
     public static HashMap<String,Profesor> conjuntoDEprofes() throws IOException{
         HashMap<String,Profesor> conjunto = new HashMap<>();
         
@@ -87,6 +89,7 @@ public class Pobladordemapas {
         return conjunto;
     }
     
+    //Se crea un arreglo solo para los nombres de los alumnos
     public static ArrayList<String> conjuntoCurso(){
         
         try {

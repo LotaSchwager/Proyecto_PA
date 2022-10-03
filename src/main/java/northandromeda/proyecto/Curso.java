@@ -31,6 +31,7 @@ public class Curso {
         this.curso = curso;
     }
     
+    //Busca el alumno dentro del mapardo con el rut
     public Alumno buscarAlumno (String rut){
         
         if (mapaAlumnos.claveUsada(rut)){
@@ -41,7 +42,8 @@ public class Curso {
         return null;
     }
     
-        public boolean NombreRepetido (String nombre){
+    //Comprueba si existe un alumno con ese nombre
+    public boolean NombreRepetido (String nombre){
         Lust lista = mapaAlumnos.obtieneLista();
         
         for (int i = 0; i < lista.lustSize(); i++){

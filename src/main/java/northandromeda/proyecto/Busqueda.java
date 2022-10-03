@@ -10,6 +10,7 @@ import static northandromeda.proyecto.Pobladordemapas.listaAlumnos;
 
 public class Busqueda {
     
+    //Comprueba si es la contraseña correcta para el profe en cuestion
     static boolean correctPassword(Profesor profe, String password){
         
         return profe.getPassword().equals(password);
@@ -47,6 +48,7 @@ public class Busqueda {
         }
     }
     
+    //Comprueba si el curso existe
     static boolean buscarCurso (String curso, ArrayList <String> list){
         
         for (int i = 0; i < list.size(); i++){
@@ -59,6 +61,8 @@ public class Busqueda {
         
         return false;
     }
+    
+    //Devuelve una lista con los  cursos existentes
     static Lust buscarCurso(String curso){
         try {
             ArrayList <Alumno> studiantes = listaAlumnos();
@@ -79,6 +83,7 @@ public class Busqueda {
         return null;
     }
     
+    //Busca un alumno con respecto a un rut
     static Alumno buscarAlumno(String rut){
         try {
             ArrayList <Alumno> studiantes = listaAlumnos();
@@ -97,10 +102,11 @@ public class Busqueda {
         return null;
     }
     
+    //Toma un numero int y lo da vuelta
     public static int reverseNumero(int numero){
         
-      int rev = 0; // reversed number
-      int rem;   // remainder
+      int rev = 0; 
+      int rem;
         
       while(numero > 0){
            
@@ -112,8 +118,11 @@ public class Busqueda {
       return rev;
     }
     
+    //Calcula el digito verificador de un rut (sin el propio digito)
     public static int obtenerVerificador (int numero){
-        int reverso = reverseNumero(numero);
+        int reverso = reverseNumero(numero);//Se da vuelta el numero
+        
+        //Se obtiene cada digito del numero
         int primer = (int)reverso / 10000000;
         int segundo = ((int)reverso / 1000000) % 10;
         int tercero = ((int)reverso / 100000) % 10;
@@ -123,10 +132,12 @@ public class Busqueda {
         int septimo = ((int)reverso / 10) % 10;
         int octavo = (int)(reverso % 10);
         
+        //Se añaden a un arreglo, ademas de inicializar 2 arreglos mas 
         int[] reversoVector = {primer,segundo,tercero,cuarto,quinto,sexto,septimo,octavo};
         int[] multiplicadores = {2,3,4,5,6,7};
         int[] sumas = new int[8];
         
+        //Se calcula multiplicando el arreglo reversoVecotr con multiplicadores
         int j = 0;
         for(int i = 0; i < reversoVector.length; i++){
             
@@ -136,18 +147,23 @@ public class Busqueda {
             j++;
         }
         
+        //los resultados se suman
         int sumaTotal = 0;
         for (int i = 0; i < sumas.length; i++){
             
             sumaTotal += sumas[i];
         }
         
+        //Se divide con 11
         int sumaInt = (int)sumaTotal / 11;
         
+        //Se multiplica con 11
         sumaInt = sumaInt * 11;
         
+        //Se resta la sumatotal dada con las multiplicaciones con la variable que se multiplico con 11 y se dividio en 11
         int definitivo = Math.abs(sumaTotal - sumaInt);
         
+        //A ese numero se le resta 11 y listo tenemos nuestro digito verificador
         definitivo = 11 - definitivo;
         
         if (definitivo == 11) return 0;
@@ -158,6 +174,8 @@ public class Busqueda {
         
     }
     
+    //Tomo el rut (sin digito) + el digito + si era un rut con termino k o no
+    //A todo eso lo convierto en un String
     public static String toRut (int numero, int digito, int version){
         String primer = String.valueOf((int)numero / 10000000);
         String segundo =  String.valueOf(((int)numero / 1000000) % 10);
@@ -181,6 +199,8 @@ public class Busqueda {
         }
 
     }
+    
+    //Busca a los alumnos pertenecientes a un curso
     static Lust BuscarALumnosCursos(String curso){
         try {
             ArrayList <Alumno> studiantes = listaAlumnos();

@@ -170,6 +170,7 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
     }//GEN-LAST:event_NombreActionPerformed
 
     private void botonbotonAgregarALumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonbotonAgregarALumnoMouseClicked
+        //Primero hay que descartar que los textos no estan vacios
         if (Nombre.getText().equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Nombre en Blanco", "ERROR DE LECTURA",  javax.swing.JOptionPane.ERROR_MESSAGE);
         }else if (Rut.getText().equals("")){
@@ -177,23 +178,30 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
         }else if (CursoString.getText().equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Curso en Blanco", "ERROR DE LECTURA",  javax.swing.JOptionPane.ERROR_MESSAGE);
         }else{
+            //Despues se empieza el momento de verificacion
+            
             NuevoNombre.setText("Nombre : " + Nombre.getText() );
             NuevoRut.setText("Rut : " + Rut.getText());
             NuevoCurso.setText("Curso :" + CursoString.getText());
             ArrayList<String> cursos = conjuntoCurso();
             
+            //Si el curso existe o no
             if (Busqueda.buscarCurso(CursoString.getText(), cursos)){
                     
+                //Si el nombre esta repetido o no
                     if (Busqueda.nombreRepetido(Nombre.getText())){
                         
+                        //Si el rut existe o no
                         if(buscarAlumno(Rut.getText())!=null){
                             try{
                                 int numero = Integer.valueOf(Rut.getText());
-
+                               
+                                //Si el rut no contiene un . (porque podria tomoarlo como double y el . pasaria piola)
                                 if (!(Rut.getText().contains("."))){
 
                                     int digitos = (int)(Math.log10(numero)+1);
-
+                                    
+                                    //Casos para los 9 digitos (8 digitos es para el caso en q la persona tenga un rut con termino k)
                                     if (digitos == 9 || digitos == 8){
 
                                         int rutAverificar;
@@ -204,7 +212,8 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
                                         }
 
                                         int verObtenido = obtenerVerificador(rutAverificar);
-
+                                        
+                                        //Verificar si el digito verificador esta correcto
                                         if (digitos == 8 && verObtenido == 99){
                                             String rut = toRut(rutAverificar,verObtenido,8);
                                             NuevoRut.setText("Rut : " + rut);
@@ -216,10 +225,12 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
                                             agregarAlumno(nuevasNotas,"fisica.csv");
                                             agregarAlumno(nuevasNotas,"biologia.csv");
                                             agregarAlumno(nuevasNotas,"quimica.csv");
+                                            //Listo Alumno nuevo
 
                                         }else{
-
+                            
                                             int verificador = (int) numero % 10;
+                                            //Verificar si el digito verificador esta correcto
                                             if (digitos == 9 && verObtenido == verificador){
                                                 String rut = toRut(rutAverificar,verObtenido,9);
                                                 NuevoRut.setText("Rut : " + rut);
@@ -231,6 +242,7 @@ public class PanelAñadirAlumno extends javax.swing.JPanel {
                                                 agregarAlumno(nuevasNotas,"fisica.csv");
                                                 agregarAlumno(nuevasNotas,"biologia.csv");
                                                 agregarAlumno(nuevasNotas,"quimica.csv");
+                                                //Listo alumno nuevo
 
                                             }else{
 

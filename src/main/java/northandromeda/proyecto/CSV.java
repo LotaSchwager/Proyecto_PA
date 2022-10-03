@@ -66,6 +66,7 @@ public class CSV {
         return listaParametros;
     }
     
+     //Busca la linea especifica dentro de las lineas (linea1;linea2;linea3)
     public static int buscarColumna_CSV(String linea,String columnaDeaseada) {
         int columna = 0;
 
@@ -79,6 +80,7 @@ public class CSV {
         return columna;
     }
     
+    //Se agrega el alumno al final del archivo
     public static  void agregarAlumno(String[] alumno, String archivo){
         BufferedWriter bufferEscritura= null;
         try{
@@ -109,6 +111,8 @@ public class CSV {
         }        
     }
     
+    //Este leer el archivo hasta que encuentra el rut especificado y se guardan sus notas
+    //Se retornan esas notas
     public static  ArrayList<String> notasAlumno(String rut, String archivo){
         String separador = ";";
         String line = null;
@@ -177,6 +181,9 @@ public class CSV {
         }        
     }
     
+    //Este es para cuando se cambia las notas de un alumno
+    //Lo que se hace es hacer un archivo nuevo y colocarle los valores del otro archivo a excepcion del alumno que cambio de nota a ese se le coloca las nuevas notas}
+    //Una vez temrinado el archivo viejo se borra y el nuevo pasa a reemplazarlo
     public static void agregarNotasnueva(String archivo, String rut, String eva1, String eva2, String eva3, String eva4, String eva5){
         String tempFile = "temp.csv";
         File oldFile = new File (archivo);
@@ -222,16 +229,21 @@ public class CSV {
         }
                 
     }
-    
-        public static void archivoTXT(HashMap<String, Curso> cursos, ArrayList<Alumno> alumnos, HashMap<String,Profesor> profe){
+        
+    //Funcion que crea el archivo.txt que contiene los valores de las clases
+    public static void archivoTXT(HashMap<String, Curso> cursos, ArrayList<Alumno> alumnos, HashMap<String,Profesor> profe){
+        //Obtengo Archivo.txt antiguo y lo borro
         File oldFile = new File ("Archivo.txt");
         oldFile.delete();
         
+        //Creo uno nuevo con el mismo nombre
         File newFile = new File("Archivo.txt");
         BufferedWriter bw= null;
         try{
+            //Abro el archivo creado
             bw = new BufferedWriter(new FileWriter(newFile));
             
+            //Y le empiezo a rellenar con los datos
             bw.write("Clase Curso :");
             bw.newLine();
             for (Curso value : cursos.values()){
@@ -300,6 +312,7 @@ public class CSV {
         }finally{{
             if (bw != null){
                 try{
+                    //Cierro el archivo
                     bw.close();
                 } catch (IOException ex) {
                     Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);

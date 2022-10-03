@@ -200,6 +200,8 @@ public class PanelMateria extends javax.swing.JPanel {
 
     private void BuscarAlumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarAlumnoMouseClicked
         
+        //  Muestra las notas del alumno
+        
         if (!(AlumnoRut.getText().equals(""))){
             Alumno student = null;
             student = Busqueda.buscarAlumno(AlumnoRut.getText());
@@ -246,6 +248,7 @@ public class PanelMateria extends javax.swing.JPanel {
     }//GEN-LAST:event_BuscarAlumnoMouseClicked
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
+        //Si el texto del alumno no es vacio
         if (!(AlumnoRut.getText().equals(""))){
             Alumno student = null;
             student = Busqueda.buscarAlumno(AlumnoRut.getText());
@@ -254,6 +257,9 @@ public class PanelMateria extends javax.swing.JPanel {
                 String eva1, eva2, eva3, eva4, eva5;
                 
                 boolean ver1 = false;boolean ver2 = false;boolean ver3 = false;boolean ver4 = false;boolean ver5 = false;
+                
+                //Cada nota tiene que ser un numero double o int
+                //Cada nota tiene que ser mayor a 0.0 y menor o igual a 7.0
                 
                 //Evaluacion 1
                 if (!EVA01.getText().equals("")){
@@ -406,12 +412,13 @@ public class PanelMateria extends javax.swing.JPanel {
                 }
                 
                 
-                //Agregar Notas
+                //Agregar Notas, si se cumple con las 2 reglas
                 if (ver1 && ver2 && ver3 && ver4 & ver5){
                     
                     Warning6.setForeground(Color.black);
                     Warning6.setText("Cambio hecho");
                     agregarNotasnueva(VentanaInicio.profe.getMateria()+".csv", student.getRut(), eva1,eva2,eva3,eva4,eva5);
+                    //nota agregada
                 
                 }else{
                     
