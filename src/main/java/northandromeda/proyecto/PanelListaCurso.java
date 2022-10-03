@@ -127,26 +127,35 @@ public class PanelListaCurso extends javax.swing.JPanel {
 
     private void labelBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonMouseClicked
         try {
-
+            
+            //obtenemos la lista de String que contienen todos los cursos
             String[] items = listadoCurso();
             
+            //aplicamos el modelo al ComboBox
             boxCursos.setModel(new javax.swing.DefaultComboBoxModel<>(items));
             boxCursos.setEnabled(true);  
             
-            //aplicamos en la primera tabla
             
+            
+            //aplicamos en la tabla
+            
+            //buscamos los alumnos que pertenecen al primer item del combobox
             Lust alumnos = buscarCurso(items[0]);
             
+            //hacemos una matris con tamaño [numero de alumnos][2 columnos que estan por defecto {Nombre, Rut}]
             String[][] lista = new String[alumnos.lustSize()][2];
             
+            //dejamos un current que nos ayude a iterar y sacar elementos
             Alumno current;
             
+            //llenamos la matriz con los datos
             for(int i = 0;i<alumnos.lustSize();i++){
                 current=(Alumno) alumnos.getLust(i);
                 lista[i][0]=current.getNombre();
                 lista[i][1]=current.getRut();
             }
             
+            //adjuntamos los datos a la tabla
             tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             lista,
             new String [] {
@@ -160,19 +169,25 @@ public class PanelListaCurso extends javax.swing.JPanel {
     }//GEN-LAST:event_labelBotonMouseClicked
 
     private void boxCursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxCursosItemStateChanged
+        //si cambia algun elemento del combo box aplicamos lo siguiente
         
+        //buscamos los alumnos que pertenescan a la curso seleccionado
         Lust alumnos = buscarCurso(boxCursos.getSelectedItem().toString());
-
+        
+        //hacemos una matris con tamaño [numero de alumnos][2 columnos que estan por defecto {Nombre, Rut}]
         String[][] lista = new String[alumnos.lustSize()][2];
-
+        
+        //dejamos un current que nos ayude a iterar y sacar elementos
         Alumno current;
-
+        
+        //llenamos la matriz con los datos
         for(int i = 0;i<alumnos.lustSize();i++){
             current=(Alumno) alumnos.getLust(i);
             lista[i][0]=current.getNombre();
             lista[i][1]=current.getRut();
         }
-
+        
+        //adjuntamos los datos a la tabla
         tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
         lista,
         new String [] {

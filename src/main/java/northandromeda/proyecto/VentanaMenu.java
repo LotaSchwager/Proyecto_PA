@@ -33,7 +33,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         contenido.repaint();
     }
     
-    
+    //Paleta de colores para los botones son meramente esteticos
     private Color azulClaro = new Color(71,125,205);
     private Color azul = new Color(47,99,176);
     
@@ -286,6 +286,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         /*
         -----------------Lista curso------------------
         */
+        //pasa al panel listacurso
         PanelListaCurso current = new PanelListaCurso();
         current.setSize(contenido.getSize());
         current.setLocation(0,0);
@@ -310,6 +311,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         /*
         -----------------Añadir Alumno------------------
         */
+        //pasa al panel añadir alumno
         PanelAñadirAlumno current = new PanelAñadirAlumno();
         current.setSize(650,620);
         current.setLocation(0,0);
@@ -344,7 +346,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         /*
         -----------------Buscar Alumno------------------
         */
-        
+        //pasa al panel buscarAlumno
         PanelbuscarAlumno current = new PanelbuscarAlumno();
         current.setSize(contenido.getSize());
         current.setLocation(0,0);
@@ -381,6 +383,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         /*
         -----------------Materias------------------
         */
+        //pasa al panel materia
         PanelMateria current = new PanelMateria();
         current.setSize(contenido.getSize());
         current.setLocation(0,0);
@@ -412,7 +415,9 @@ public class VentanaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_labelMateriaMouseReleased
 
     private void labelPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPrincipalMouseClicked
-        // TODO add your handling code here:
+        
+        //pasa al panel prinsipal por si el usario quiere volver
+        
        PanelPrincipal current = new PanelPrincipal();
         current.setSize(contenido.getSize());
         current.setLocation(0,0);
@@ -444,7 +449,10 @@ public class VentanaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_labelPrincipalMouseReleased
 
     private void labelsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelsalirMouseClicked
-       try {
+       
+        //sale del programa y expora un txt que contiene la informacion de las clases
+        
+        try {
             ArrayList<Alumno> alumnos = listaAlumnos();
             HashMap<String,Curso> cursos = pobladorMapaCursos(VentanaInicio.profe.getMateria());
             HashMap<String,Profesor> profes = conjuntoDEprofes();

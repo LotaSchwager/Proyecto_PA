@@ -210,18 +210,26 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
     }//GEN-LAST:event_campoRutMouseClicked
 
     private void labelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarMouseClicked
-        Alumno current = null ;
+        Alumno current = null ;//dejamos esta variable en null
         
-        
+        //si encuentra el rut escrito en el campo escribimos los siguiente
         if(Busqueda.buscarAlumno(campoRut.getText())!=null){
             
+            //asignamos el current al alumno buscado
             current = Busqueda.buscarAlumno(campoRut.getText());
+            
+            //imprimimos su informacion en pantalla
             labelNombre.setText(current.getNombre());
             labelCurso.setText(current.getCursodeAlumno());
+            
+            //materia la cual revisamos
             labelMateria.setText(VentanaInicio.profe.getMateria());
+            
+            //obtenemos las notas del alumno
             ArrayList<String> notas = notasAlumno(current.getRut(),VentanaInicio.profe.getMateria()+".csv");
             current.setPromedio();
             
+            //lo mostramos en la tabla
             if (notas != null){
                 tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
                     new Object [][] {
@@ -237,6 +245,7 @@ public class PanelbuscarAlumno extends javax.swing.JPanel {
                     }
                 ));
             }else{
+                //si no tiene notas se muestra todo con "0.0"
                 tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
                     new Object [][] {
                     {"evaluacion 1", "0"},

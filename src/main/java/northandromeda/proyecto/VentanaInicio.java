@@ -185,10 +185,15 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void LogInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInMouseClicked
     
         Profesor current = null;
+        
         try {
+            //buscamos al profesor
             current = Busqueda.buscarProfesor(RutString.getText());
             
+            
             if (current != null){
+                
+                //verificamos la contraseña
                 if (Busqueda.correctPassword(current, ClaveString.getText())){
                     VentanaMenu next = new VentanaMenu();
                     profe = current;
@@ -201,6 +206,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                 }
             
             }else{
+                //si sale esto significa que no esta registrado
                 textWarn.setForeground(Color.red);
                 textWarn.setText("Usuario no registrado");
             }
@@ -211,7 +217,9 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_LogInMouseClicked
 
     private void RutStringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RutStringMouseClicked
-        // TODO add your handling code here:
+        
+        
+        //esto ayuda al diseño de las ventanas
         if(RutString.getText().equals("Ingrese su rut")){
             RutString.setText("");
             RutString.setForeground(Color.black);
@@ -223,7 +231,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_RutStringMouseClicked
 
     private void ClaveStringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClaveStringMouseClicked
-        // TODO add your handling code here:
+        //esto ayuda al diseño de las ventanas
         if(String.valueOf(ClaveString.getPassword()).equals("**********")){
             ClaveString.setText("");
             ClaveString.setForeground(Color.black);

@@ -62,7 +62,7 @@ public class Busqueda {
         return false;
     }
     
-    //Devuelve una lista con los  cursos existentes
+    //Devuelve una lista con los alumnos que pertenecen curso con el nombre ingresado
     static Lust buscarCurso(String curso){
         try {
             ArrayList <Alumno> studiantes = listaAlumnos();
