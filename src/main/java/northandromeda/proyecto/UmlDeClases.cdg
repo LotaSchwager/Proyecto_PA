@@ -257,18 +257,18 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <IsRelation name="is" source="northandromeda.proyecto.Profesor" target="northandromeda.proyecto.Persona"/>
-    <HasRelation name="notas" source="northandromeda.proyecto.Alumno" target="northandromeda.proyecto.Lust" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Curso" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="notas" source="northandromeda.proyecto.Alumno" target="northandromeda.proyecto.Lust" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="northandromeda.proyecto.Curso" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Lust" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="northandromeda.proyecto.Alumno" target="northandromeda.proyecto.Persona"/>
-    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Profesor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="northandromeda.proyecto.CSV" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="northandromeda.proyecto.Busqueda" target="northandromeda.proyecto.Lust" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="mapaAlumnos" source="northandromeda.proyecto.Curso" target="northandromeda.proyecto.Mapardo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Mapardo"/>
     <UseRelation source="northandromeda.proyecto.Busqueda" target="northandromeda.proyecto.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="northandromeda.proyecto.Alumno" target="northandromeda.proyecto.Persona"/>
+    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Lust" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mapaAlumnos" source="northandromeda.proyecto.Curso" target="northandromeda.proyecto.Mapardo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Mapardo"/>
+    <UseRelation source="northandromeda.proyecto.Busqueda" target="northandromeda.proyecto.Lust" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="northandromeda.proyecto.Profesor" target="northandromeda.proyecto.Persona"/>
+    <UseRelation source="northandromeda.proyecto.Pobladordemapas" target="northandromeda.proyecto.Profesor" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="northandromeda.proyecto.Mapardo" target="northandromeda.proyecto.Lust" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="northandromeda.proyecto.Busqueda" target="northandromeda.proyecto.Profesor" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
