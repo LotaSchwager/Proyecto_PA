@@ -223,7 +223,7 @@ public class CSV {
                 
     }
     
-        public static void archivoTXT(HashMap<String, Curso> cursos, ArrayList<Alumno> alumnos){
+        public static void archivoTXT(HashMap<String, Curso> cursos, ArrayList<Alumno> alumnos, HashMap<String,Profesor> profe){
         File oldFile = new File ("Archivo.txt");
         oldFile.delete();
         
@@ -273,6 +273,23 @@ public class CSV {
                 bw.newLine();
                 bw.write("-----------------------------------------");
                 
+            }
+            
+            bw.newLine();
+            bw.newLine();
+            bw.write("Clase Profesor :");
+            bw.newLine();
+            for(Profesor values : profe.values()){
+                
+                bw.newLine();
+                bw.write("Nombre :" + values.getNombre());
+                bw.newLine();
+                bw.write("Asignatura :" + values.getMateria());
+                bw.newLine();
+                bw.write("Rut :" + values.getRut());
+                bw.newLine();
+                bw.write(("-------------------------------------------"));
+                bw.newLine();
             }
 
                 

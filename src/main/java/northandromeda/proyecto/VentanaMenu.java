@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static northandromeda.proyecto.CSV.archivoTXT;
+import static northandromeda.proyecto.Pobladordemapas.conjuntoDEprofes;
 import static northandromeda.proyecto.Pobladordemapas.listaAlumnos;
 import static northandromeda.proyecto.Pobladordemapas.pobladorMapaCursos;
 
@@ -446,7 +447,8 @@ public class VentanaMenu extends javax.swing.JFrame {
        try {
             ArrayList<Alumno> alumnos = listaAlumnos();
             HashMap<String,Curso> cursos = pobladorMapaCursos(VentanaInicio.profe.getMateria());
-            archivoTXT(cursos,alumnos);
+            HashMap<String,Profesor> profes = conjuntoDEprofes();
+            archivoTXT(cursos,alumnos,profes);
         } catch (IOException ex) {
             Logger.getLogger(VentanaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
